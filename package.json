@@ -25,5 +25,6 @@
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.4.13"
-  }
+  },
+  "devDependencies": {}
 }

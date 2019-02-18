@@ -60,38 +60,64 @@ app.get('/', function homepage(req, res) {
              {method: 'DELETE', path: '/api/movie/:id', description: 'Delete a movie'}
          ]
      });
- })
+ });
 
  app.get('/api/category', (req, res) => {
      db.Category.find( (err, foundCategories) => {
          if (err) {console.log(err)}
          res.json(foundCategories);
-     })
- })
+     });
+ });
 
  app.get('/api/category/:id', (req, res) => {
-     
- })
+     const categoryId = req.params.id;
+     db.Category.findOne({id: categoryId}, (err, foundCategory) => {
+         if (err) {console.log(err)}
+         res.json(foundCategory);
+     });
+ });
 
  app.get('/api/movie', (req, res) => {
-
- })
+    db.Movie.find( (err, foundMovies) => {
+        if (err) {console.log(err)}
+        res.json(foundMovies)
+    });
+ });
 
  app.get('/api/movie/:id', (req, res) => {
-
- })
+     const movieId = req.params.id;
+     db.Movie.findOne({id: movieId}, (err, foundMovie) => {
+         if (err) {console.lod(err)}
+         res.json(foundMovie)
+     });
+ });
 
  app.post('/api/movie', (req, res) => {
-
- })
+    const newMovie = new db.Movie({
+        name: req.body.name,
+        // other properties?
+    });
+    newMovie.save( (err, newMovie) => {
+        if (err) {console.log(err)}
+        res.json(newMovie);
+    });
+ });
 
  app.put('/api/movie/:id', (req, res) => {
-
- })
+    const movieId = req.params.id;
+    db.Movie.findOneAndUpdate({id: movieId}, req.body, (err, updatedMovie) => {
+        if (err) {console.log(err)};
+        res.json(updatedMovie);
+    });
+ });
 
  app.delete('/api/movie/:id', (req, res) => {
-
- })
+     const movieId = req.params.id;
+     db.Movie.findOneAndDelete( {id: movieId}, (err, deletedMovie) => {
+         if (err) {console.log(err)};
+         res.json(deletedMovie);
+     });
+ });
 
  /**********
  * SERVER *

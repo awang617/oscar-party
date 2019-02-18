@@ -34,26 +34,43 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
-// [] api get route
-// [] categories get route
-// [] categories get by id rout
-// [] movies get route
-// [] movie get by id route
+// [x] api get route
+// [x] categories get route
+// [x] categories get by id rout
+// [x] movies get route
+// [x] movie get by id route
 // [] movie delete by id route
 // [] movie post route
 // [] movie put by id route 
 
 
  app.get('/api', (req, res) => {
-     res.json();
+     res.json({
+         message: 'Welcome to the 2019 Oscar Party! Are you ready to choose your winners for each category?',
+         documentationUrl: 'https://github.com/awang617/oscar-party/blob/master/README.md',
+         baseUrl: 'heroku app url goes here', //UPDATE LATER
+         endpoints: [
+             {method: 'GET', path: '/api', description: 'Describes all endpoints'},
+             {method: 'GET', path: '/api/category', description: 'See all the categories of the 2019 Oscars'},
+             {method: 'GET', path: '/api/category/:id', description: 'Find a single category'},
+             {method: 'GET', path: '/api/movie', description: 'See all the movies'},
+             {method: 'GET', path: '/api/movie/:id', description: 'Find a single movie by id'},
+             {method: 'POST', path: '/api/movie', description: 'Create a new movie'},
+             {method: 'PUT', path: '/api/movie/:id', description: 'Update a movie'},
+             {method: 'DELETE', path: '/api/movie/:id', description: 'Delete a movie'}
+         ]
+     });
  })
 
  app.get('/api/category', (req, res) => {
-     res.json();
+     db.Category.find( (err, foundCategories) => {
+         if (err) {console.log(err)}
+         res.json(foundCategories);
+     })
  })
 
  app.get('/api/category/:id', (req, res) => {
-
+     
  })
 
  app.get('/api/movie', (req, res) => {

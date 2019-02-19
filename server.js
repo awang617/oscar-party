@@ -86,6 +86,7 @@ app.get('/', function homepage(req, res) {
 
  app.get('/api/movie/:id', (req, res) => {
      const movieId = req.params.id;
+
      db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
          if (err) {console.log(err)}
          res.json(foundMovie)

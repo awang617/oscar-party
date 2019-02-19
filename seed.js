@@ -28,7 +28,7 @@ const category_list = [
     },
     {
         name: 'Animated Feature Film',
-        movies: ['Incredibles 2', 'Isle of Dogs', 'Mirai', 'Ralph Breaks the Internet', 'Spiderman: Into the Spider-verse']
+        movies: ['Incredibles 2', 'Isle of Dogs', 'Mirai', 'Ralph Breaks the Internet', 'Spider-Man: Into the Spider-verse']
     },
     {
         name: 'Cinematography',
@@ -108,19 +108,22 @@ const category_list = [
 let movie_list = [
     {
         name: 'Black Panther',
-
+        image: './public/images/black-panther.jpg',
     },
     {
         name: 'BlacKkKlansman',
+        image: './public/images/blackkklansman.jpg',
         suppActor: 'Adam Driver',
         director: 'Spike Lee',
     },
     {
         name: 'Bohemian Rhapsody',
+        image: './public/images/bohemian-rhapsody.jpg',
         actor: 'Rami Malek',
     },
     {
         name: 'The Favourite',
+        image: './public/images/the-favourite.jpg',
         actress: 'Olivia Colman',
         // [] QUESTION: LIST AS ARRAY OR TWO SEPARATE PROPERTIES?
         suppActress: ['Emma Stone', 'Rachel Weisz'],
@@ -128,23 +131,27 @@ let movie_list = [
     },
     {
         name: 'Green Book',
+        image: './public/images/green-book.jpg',
         actor: 'Viggo Mortensen',
         suppActor: 'Mahershala Ali',
     },
     {
         name: 'Roma',
+        image: './public/images/roma.jpg',
         actress: 'Yalitza Aparicio',
         suppActress: 'Marina de Tavira',
         director: 'Alfonso Cuaron',
     },
     {
         name: 'A Star Is Born',
+        image: './public/images/a-star-is-born.jpg',
         actor: 'Bradley Cooper',
         actress: 'Lady Gaga',
         suppActor: 'Sam Elliott',
     },
     {
         name: 'Vice',
+        image: './public/images/vice.jpg',
         actor: 'Christian Bale',
         suppActor: 'Sam Rockwell',
         suppActress: 'Amy Adams',
@@ -152,141 +159,185 @@ let movie_list = [
     },
     {
         name: "At Eternity's Gate",
+        image: './public/images/at-eternitys-gate.jpg',
         actor: 'Willem Dafoe',
     },
     {
         name: 'The Wife',
+        image: './public/images/the-wife.jpg',
         actress: 'Glenn Close',
     },
     {
         name: 'Can You Ever Forgive Me?',
+        image: './public/images/can-you-ever-forgive-me.jpg',
         actress: 'Melissa McCarthy',
         suppActor: 'Richard E. Grant',
     },
     {
         name: 'If Beale Street Could Talk',
+        image: './public/images/if-beale-street-could-talk.jpg',
         suppActress: 'Regina King',
     },
     {
         name: 'Incredibles 2',
+        image: './public/images/incredibles-2.jpg',
     },
     {
         name: 'Isle of Dogs',
+        image: './public/images/isle-of-dogs.jpg',
     },
     {
         name: 'Mirai',
+        image: './public/images/mirai.jpg',
     },
     {
         name: 'Ralph Breaks the Internet',
+        image: './public/images/ralph-breaks-the-internet.jpg',
     },
     {
-        name: 'Spiderman: Into the Spider-verse',
+        name: 'Spider-Man: Into the Spider-verse',
+        image: './public/images/spider-man.jpg',
     },
     {
         name: 'Cold War',
+        image: './public/images/cold-war.jpg',
         director: 'Pawel Pawlikowski',
     },
     {
         name: 'Never Look Away',
+        image: './public/images/never-look-away.jpg',
     },
     {
         name: 'The Ballad of Buster Scruggs',
+        image: './public/images/the-ballad-of-buster-scruggs.jpg',
     },
     {
         name: 'Mary Poppins Returns',
+        image: './public/images/mary-poppins-returns.jpg',
     },
     {
         name: 'Mary Queen of Scots',
+        image: './public/images/mary-queen-of-scots.png',
     },
     {
         name: 'Free Solo',
+        image: './public/images/free-solo.jpg',
     },
     {
         name: 'Hale County This Morning, This Evening',
+        image: './public/images/hale-county-this-morning-this-evening.jpg',
     },
     {
         name: 'Minding the Gap',
+        image: './public/images/minding-the-gap.jpg',
     },
     {
         name: 'Of Fathers and Sons',
+        image: './public/images/of-fathers-and-sons.jpg',
     },
     {
         name: 'RBG',
+        image: './public/images/rbg.jpg',
     },
     {
         name: 'Black Sheep',
+        image: './public/images/black-sheep.jpg',
     },
     {
         name: 'End Game',
+        image: './public/images/end-game.jpg',
     },
     {
         name: 'Lifeboat',
+        image: './public/images/lifeboat.jpg',
     },
     {
         name: 'A Night at The Garden',
+        image: './public/images/a-night-at-the-garden.jpeg',
     },
     {
         name: 'Period. End of Sentence.',
+        image: './public/images/period-end-of-sentence.jpg',
     },
     {
         name: 'Capernaum',
+        image: './public/images/capernaum.jpg',
     },
     {
         name: 'Shoplifters',
+        image: './public/images/shoplifters.jpg',
     },
     {
         name: 'Border',
+        image: './public/images/border.jpg',
     },
     {
         name: 'First Man',
+        image: './public/images/first-man.jpg',
     },
     {
         name: 'Animal Behaviour',
+        image: './public/images/animal-behaviour.jpg',
     },
     {
         name: 'Bao',
+        image: './public/images/bao.jpg',
     },
     {
         name: 'Late Afternoon',
+        image: './public/images/late-afternoon.jpg',
     },
     {
         name: 'One Small Step',
+        image: './public/images/one-small-step.jpg',
     },
     {
         name: 'Weekends',
+        image: './public/images/weekends.png',
     },
     {
         name: 'Detainment',
+        image: './public/images/detainment.jpg',
     },
     {
         name: 'Fauve',
+        image: './public/images/fauve.jpg',
     },
     {
         name: 'Marguerite',
+        image: './public/images/marguerite.jpg',
     },
     {
         name: 'Mother',
+        image: './public/images/mother.jpeg',
     },
     {
-        name: 'Skin'
+        name: 'Skin',
+        image: './public/images/skin.jpg',
     },
     {
         name: 'A Quiet Place',
+        image: './public/images/a-quiet-place.jpg',
     },
     {
         name: 'Avengers: Infinity War',
+        image: './public/images/avengers-infinity-war.jpg',
     },
     {
         name: 'Christopher Robin',
+        image: './public/images/christopher-robin.jpg',
     },
     {
         name: 'Ready Player One',
+        image: './public/images/ready-player-one.jpg',
     },
     {
-        name: 'Solo: A Star Wars Story'
+        name: 'Solo: A Star Wars Story',
+        image: './public/images/solo-a-star-wars-story.jpg',
     },
     {
         name: 'First Reformed',
+        image: './public/images/first-reformed.jpg',
     },
 ];
 
@@ -306,7 +357,7 @@ db.Movie.deleteMany({}, (err, movies) => {
         if (err) { throw err; };
         console.log('removed all categories');
         // iterate through category list
-        category_list.forEach(categoryData) => {
+        category_list.forEach((categoryData) => {
             // create a new category using its model
             let category = new db.Category({
                 name: categoryData.name,
@@ -326,7 +377,7 @@ db.Movie.deleteMany({}, (err, movies) => {
                     console.log(`saved ${savedCategory.name}`);
                 });
             });
-        };
+        });
     });
   });
 });

@@ -71,7 +71,7 @@ app.get('/', function homepage(req, res) {
 
  app.get('/api/category/:id', (req, res) => {
      const categoryId = req.params.id;
-     db.Category.findOne({id: categoryId}, (err, foundCategory) => {
+     db.Category.findOne({_id: categoryId}, (err, foundCategory) => {
          if (err) {console.log(err)}
          res.json(foundCategory);
      });
@@ -86,7 +86,7 @@ app.get('/', function homepage(req, res) {
 
  app.get('/api/movie/:id', (req, res) => {
      const movieId = req.params.id;
-     db.Movie.findOne({id: movieId}, (err, foundMovie) => {
+     db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
          if (err) {console.lod(err)}
          res.json(foundMovie)
      });
@@ -105,7 +105,7 @@ app.get('/', function homepage(req, res) {
 
  app.put('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
-    db.Movie.findOneAndUpdate({id: movieId}, req.body, (err, updatedMovie) => {
+    db.Movie.findOneAndUpdate({_id: movieId}, req.body, (err, updatedMovie) => {
         if (err) {console.log(err)};
         res.json(updatedMovie);
     });
@@ -113,7 +113,7 @@ app.get('/', function homepage(req, res) {
 
  app.delete('/api/movie/:id', (req, res) => {
      const movieId = req.params.id;
-     db.Movie.findOneAndDelete( {id: movieId}, (err, deletedMovie) => {
+     db.Movie.findOneAndDelete( {_id: movieId}, (err, deletedMovie) => {
          if (err) {console.log(err)};
          res.json(deletedMovie);
      });

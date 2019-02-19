@@ -63,7 +63,7 @@ app.get('/', function homepage(req, res) {
  });
 
  app.get('/api/category', (req, res) => {
-     db.Category.find( (err, foundCategories) => {
+     db.Category.find().populate().exec((err, foundCategories) => {
          if (err) {console.log(err)}
          res.json(foundCategories);
      });
@@ -71,7 +71,7 @@ app.get('/', function homepage(req, res) {
 
  app.get('/api/category/:id', (req, res) => {
      const categoryId = req.params.id;
-     db.Category.findOne({_id: categoryId}, (err, foundCategory) => {
+     db.Category.findOne({_id: categoryId}).populate.exec((err, foundCategory) => {
          if (err) {console.log(err)}
          res.json(foundCategory);
      });

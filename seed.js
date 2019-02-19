@@ -414,13 +414,11 @@ db.Movie.deleteMany({}, (err, movies) => {
         let newCategory = new db.Category({
           name: categoryData.name,
         });
-
         // save the category to the database
         newCategory.save((err, savedCategory) => {
           if (err) {
             console.log(err);
           };
-          console.log(`saved ${savedCategory.name}`);
           console.log(savedCategory);
         });
 
@@ -440,8 +438,8 @@ db.Movie.deleteMany({}, (err, movies) => {
             // add movie title to movies key in category
             newCategory.movies.push(foundMovie);
             // update created category
-            db.Category.findOneAndUpdate({ name: newCategory.name }, newCategory, { new:true }).then((cat) => {
-              console.log("HERE IS THE NEW CAT",cat);
+            db.Category.findOneAndUpdate({ name: newCategory.name }, newCategory, { new: true }).then((cat) => {
+              console.log("HERE IS THE NEW CAT", cat);
             });
           });
         };

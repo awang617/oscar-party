@@ -16,9 +16,9 @@ $(document).ready(function(){
 function getCategoryHtml(category) {
   console.log('AHHHHAHAHAHAHAHAHAHHHHH');
   return `<hr>
-          <p>
+          <div>
             ${category.name}
-          </p>`;
+          </div>`;
 }
 //try foundCategories instead?
 

@@ -63,7 +63,7 @@ app.get('/', function homepage(req, res) {
  });
 
  app.get('/api/category', (req, res) => {
-     db.Category.find().populate().exec((err, foundCategories) => {
+     db.Category.find().populate('movies').exec((err, foundCategories) => {
          if (err) {console.log(err)}
          res.json(foundCategories);
      });
@@ -71,7 +71,7 @@ app.get('/', function homepage(req, res) {
 
  app.get('/api/category/:id', (req, res) => {
      const categoryId = req.params.id;
-     db.Category.findOne({_id: categoryId}).populate.exec((err, foundCategory) => {
+     db.Category.findOne({_id: categoryId}).populate('movies').exec((err, foundCategory) => {
          if (err) {console.log(err)}
          res.json(foundCategory);
      });
@@ -105,7 +105,7 @@ app.get('/', function homepage(req, res) {
 
  app.put('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
-    db.Movie.findOneAndUpdate({_id: movieId}, req.body, (err, updatedMovie) => {
+    db.Movie.findOneAndUpdate({_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
         if (err) {console.log(err)};
         res.json(updatedMovie);
     });

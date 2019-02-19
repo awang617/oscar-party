@@ -63,7 +63,7 @@ app.get('/', function homepage(req, res) {
  });
 
  app.get('/api/category', (req, res) => {
-     db.Category.find( (err, foundCategories) => {
+     db.Category.find().populate('movies').exec( (err, foundCategories) => {
          if (err) {console.log(err)}
          res.json(foundCategories);
      });

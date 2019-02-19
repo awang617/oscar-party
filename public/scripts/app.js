@@ -14,9 +14,9 @@ $(document).ready(function(){
 
 function getCategoryHtml(category) {
   return `<hr>
-          <p>
+          <div>
             ${category.name}
-          </p>`;
+          </div>`;
 }
 
 function getAllCategoriesHtml(categories) {

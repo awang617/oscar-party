@@ -16,7 +16,18 @@ function getCategoryHtml(category) {
   return `<hr>
           <div>
             ${category.name}
+            <br>
+            ${getMoviesList(category)}
           </div>`;
+}
+
+function getMoviesList(category) {
+  let moviesArr = [];
+  for (let i = 0; i < category.movies.length; i++) {
+    moviesArr.push(category.movies[i].name);
+    moviesArr.push(`<img src='${category.movies[i].image}'>`)
+  }
+  return moviesArr.join(', ');
 }
 
 function getAllCategoriesHtml(categories) {

@@ -139,7 +139,7 @@ let movie_list = [
     name: 'Roma',
     image: './public/images/roma.jpg',
     actress: 'Yalitza Aparicio',
-    supportingActress: 'Marina de Tavira',
+    supportingActress: ['Marina de Tavira'],
     director: 'Alfonso Cuaron',
   },
   {
@@ -154,7 +154,7 @@ let movie_list = [
     image: './public/images/vice.jpg',
     actor: 'Christian Bale',
     supportingActor: 'Sam Rockwell',
-    supportingActress: 'Amy Adams',
+    supportingActress: ['Amy Adams'],
     director: 'Adam McKay',
   },
   {
@@ -176,7 +176,7 @@ let movie_list = [
   {
     name: 'If Beale Street Could Talk',
     image: './public/images/if-beale-street-could-talk.jpg',
-    supportingActress: 'Regina King',
+    supportingActress: ['Regina King'],
   },
   {
     name: 'Incredibles 2',
@@ -364,8 +364,6 @@ db.Movie.deleteMany({}, (err, movies) => {
         });
 
         // to populate movies key, find the movies that match
-        // [] QUESTION: IS FINDONE THE CORRECT METHOD IF WE'RE APPLYING AN ARRAY?
-        // [] QUESTION: DO WE HAVE TO ITERATE THROUGH THE CATEGORY.MOVIES ARRAY BEFORE DOING THIS STEP?
         db.Movie.findOne({ name: categoryData.movies }, (err, foundMovie) => {
           if (err) { throw err; };
           console.log(`found movie ${foundMovie.name} for category ${categoryData.name}`);

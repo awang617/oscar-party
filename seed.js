@@ -363,18 +363,30 @@ db.Movie.deleteMany({}, (err, movies) => {
           name: categoryData.name,
         });
 
-        // to populate movies key, find the movies that match
-        db.Movie.findOne({ name: categoryData.movies }, (err, foundMovie) => {
-          if (err) { throw err; };
-          console.log(`found movie ${foundMovie.name} for category ${categoryData.name}`);
-          // add movie title to movies key in category
-          category.movie = foundMovie;
-          // save the category to the database
-          category.save((err, savedCategory) => {
-            if (err) { throw err; };
-            console.log(`saved ${savedCategory.name}`);
+        // get categoryData.movies array
+        let moviesInCategory = categoryData.movies;
+        console.log(moviesInCategory);
+        // iterate through that array
+        for (var i = 0; i < moviesInCategory.length; i++) {
+          // findOne for each movie in that array
+          db.Movie.findOne({ name: moviesInCategory[i] }, (err, foundMovie) => {
+            if (err) {
+              console.log(err);
+              console.log(`couldn't find each movie`);
+            };
+            console.log(`found movie ${foundMovie.name} for category ${categoryData.name}`);
+            // add movie title to movies key in category
+            category.movies.push(foundMovie);
+            console.log(category);
+            // save the category to the database
+            category.save((err, savedCategory) => {
+              if (err) {
+                throw err;
+              };
+              console.log(`saved ${savedCategory.name}`);
+            });
           });
-        });
+        };
       });
     });
   });

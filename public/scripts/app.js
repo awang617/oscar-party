@@ -16,18 +16,19 @@ function getCategoryHtml(category) {
   return `<hr>
           <div>
             ${category.name}
-            <br>
-            ${getMoviesList(category)}
+            <ul>
+              ${getMoviesList(category)}
+            </ul>
           </div>`;
 }
 
 function getMoviesList(category) {
   let moviesArr = [];
   for (let i = 0; i < category.movies.length; i++) {
-    moviesArr.push(category.movies[i].name);
+    moviesArr.push(`<li>${category.movies[i].name}</li>`);
     moviesArr.push(`<img src='${category.movies[i].image}'>`)
   }
-  return moviesArr.join(', ');
+  return moviesArr.join('');
 }
 
 function getAllCategoriesHtml(categories) {

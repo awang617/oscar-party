@@ -1,1 +1,11 @@
 /* styles */
+
+ul img {
+  width: 100px;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+

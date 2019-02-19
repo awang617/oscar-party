@@ -47,7 +47,7 @@ const category_list = [
     movies: ['Free Solo', 'Hale County This Morning, This Evening', 'Minding the Gap', 'Of Fathers and Sons', 'RBG']
   },
   {
-    name: 'Documentary (Short Subject',
+    name: 'Documentary (Short Subject)',
     movies: ['Black Sheep', 'End Game', 'Lifeboat', 'A Night at The Garden', 'Period. End of Sentence.']
   },
   {

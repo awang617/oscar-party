@@ -8,5 +8,10 @@ const MovieSchema = new Schema ({
   actor: String,
   actress: String,
   supportingActor: String,
-  supportingActress: String
-})
+  supportingActress: [String],
+  voteCount: Number
+});
+
+const Movie = mongoose.model('Movie', MovieSchema);
+
+module.exports = Movie;

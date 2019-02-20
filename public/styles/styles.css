@@ -1,11 +1,19 @@
 /* styles */
-
-ul img {
-  width: 100px;
+.category {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-li {
-  list-style: none;
-  display: inline-block;
+img {
+  width: 20vw;
 }
 
+.nominee {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}

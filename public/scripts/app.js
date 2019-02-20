@@ -9,21 +9,26 @@ $(document).ready(function(){
     success: handleSuccess,
     error: handleError
   });
-
-  $categoriesList.on('click', '.nominee', (clickAlert) => {
+  
+  $('ul').on('click', 'li',  function() {
     console.log($(this))
-    alert(`${$(this)} clicked`)
+    
+    // alert(`${$(this)} clicked`)
   })
 });
+    
 
 function getCategoryHtml(category) {
-  return `<div>
-            <hr>
-            <h3 class="trigger-toggle">${category.name}</h3>
-            <div class="category hidden">
-                ${getMoviesList(category)}
-            </div>
-          </div>`;
+  $('#catName').append(`<hr><h3 class="trigger-toggle">${category.name}</h3>`)
+  let moviesList = getMoviesList(category);
+  // let temp = moviesList.forEach(movie=>{
+  //   console.log(movie);
+  //   $('ul').append(`<li id=${movie._id}>` + movie + '</li>');
+  // });
+  console.log(temp);
+  // return `<hr>
+  //         <h3 class="trigger-toggle">${category.name}</h3>
+  //         ${temp}`;
 }
 
 function getMoviesList(category) {
@@ -72,32 +77,44 @@ function getMoviesList(category) {
                         </div>`);
         break;
       default:
-        moviesArr.push(`<div class='nominee'>
-                          <h4>${category.movies[i].name}</h4>
-                          <img src="${category.movies[i].image}">
-                        </div>`);
+      $('ul').append(`<li id=${category.movies[i]._id}>` + `
+                        <h4>${category.movies[i].name}</h4>
+                        <img src="${category.movies[i].image}">` + '</li>');
+        // moviesArr.push(`
+        //                   <h4>${category.movies[i].name}</h4>
+        //                   <img src="${category.movies[i].image}">
+                          
+        //                 `);
         // moviesArr.push(`<img src='${category.movies[i].image}'>`)
     };
   };
-  return moviesArr.join('');
+  console.log(moviesArr);
+  return moviesArr;
+  // return moviesArr.join('');
 };
 
 function getAllCategoriesHtml(categories) {
-  return categories.map(getCategoryHtml).join("");
+  console.log();
+  return getCategoryHtml(categories[0]);
+  // return categories.map(getCategoryHtml).join("");
 }
 
 function render() {
-  $categoriesList.empty();
+  // $categoriesList.empty();
+  // getMoviesList().forEach(movie=> {
+  //   $categoriesList.append(movie)
+  // })
+  
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
 
-  $('.category').first().removeClass('hidden');
+  // $('.category').first().removeClass('hidden');
 
-  $(".trigger-toggle").on('click', function() {
-    $('.category:not(.hidden)').addClass('hidden');
- 
-    $(this).siblings('.category').toggleClass('hidden');
-  })
+  // $(".trigger-toggle").on('click', function() {
+  //   $('.category:not(.hidden)').addClass('hidden');
+    
+  //   $(this).siblings('.category').toggleClass('hidden');
+  // })
 }
 
 function handleSuccess(json) {

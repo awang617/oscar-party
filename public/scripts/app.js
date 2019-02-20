@@ -2,7 +2,6 @@ var $categoriesList;
 var allCategories = [];
 
 $(document).ready(function(){
-
   $categoriesList = $('#categoryTarget');
   $.ajax({
     method: 'GET',
@@ -13,10 +12,12 @@ $(document).ready(function(){
 });
 
 function getCategoryHtml(category) {
-  return `<hr>
-          <h3>${category.name}</h3>
-          <div class="category">
-              ${getMoviesList(category)}
+  return `<div>
+            <hr>
+            <h3 class="trigger-toggle">${category.name}</h3>
+            <div class="category hidden">
+                ${getMoviesList(category)}
+            </div>
           </div>`;
 }
 
@@ -37,6 +38,14 @@ function render() {
   $categoriesList.empty();
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
+
+  $('.category').first().removeClass('hidden');
+
+  $(".trigger-toggle").on('click', function() {
+    $('.category:not(.hidden)').addClass('hidden');
+ 
+    $(this).siblings('.category').toggleClass('hidden');
+  })
 }
 
 function handleSuccess(json) {

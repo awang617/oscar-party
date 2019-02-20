@@ -17,3 +17,11 @@ img {
 h1, h2, h3, h4 {
   text-align: center;
 }
+
+.trigger-toggle {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}

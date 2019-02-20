@@ -21,7 +21,9 @@ function getCategoryHtml(category) {
             <hr>
             <h3 class="trigger-toggle">${category.name}</h3>
             <div class="category hidden">
-                ${getMoviesList(category)}
+              ${getMoviesList(category)}
+              <br>
+              <input type="text" id="yourChoice" name="yourChoice" placeholder="What should have won?">
             </div>
           </div>`;
 }

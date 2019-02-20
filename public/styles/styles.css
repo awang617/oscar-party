@@ -25,3 +25,17 @@ h1, h2, h3, h4 {
 .hidden {
   display: none;
 }
+
+input[type="text"] {
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+button {
+  width:100px;
+  margin-left:auto;
+  margin-right:auto;
+}

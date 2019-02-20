@@ -12,7 +12,8 @@ $(document).ready(function(){
   });
 
   $categoriesList.on('click', '.nominee', (clickAlert) => {
-    alert(`${this} clicked`)
+    console.log($(this))
+    alert(`${$(this)} clicked`)
   })
 });
 

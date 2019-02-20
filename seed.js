@@ -23,7 +23,6 @@ const category_list = [
   },
   {
     name: 'Actress in a Supporting Role',
-      // [] QUESTION: DO I NEED TO POPULATE 'THE FAVOURITE' TWICE FOR ITS TWO NOMINEES?
     movies: ['Vice', 'Roma', 'If Beale Street Could Talk', 'The Favourite']
   },
   {

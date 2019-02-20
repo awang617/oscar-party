@@ -14,19 +14,17 @@ $(document).ready(function(){
 
 function getCategoryHtml(category) {
   return `<hr>
-          <div>
-            ${category.name}
-            <ul>
+          <h3>${category.name}</h3>
+          <div class="category">
               ${getMoviesList(category)}
-            </ul>
           </div>`;
 }
 
 function getMoviesList(category) {
   let moviesArr = [];
   for (let i = 0; i < category.movies.length; i++) {
-    moviesArr.push(`<li>${category.movies[i].name}</li>`);
-    moviesArr.push(`<img src='${category.movies[i].image}'>`)
+    moviesArr.push(`<div class='nominee'><h4>${category.movies[i].name}</h4><img src='${category.movies[i].image}'></div>`);
+    // moviesArr.push(`<img src='${category.movies[i].image}'>`)
   }
   return moviesArr.join('');
 }

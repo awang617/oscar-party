@@ -43,10 +43,21 @@ function getMoviesList(category) {
                         </div>`);
         break;
       case "Actress in a Supporting Role":
-        moviesArr.push(`<div class="nominee">
-                          <h4>${category.movies[i].supportingActress} - ${category.movies[i].name}</h4>
-                          <img src="${category.movies[i].image}">
-                        </div>`);
+        if ( category.movies[i].supportingActress.length > 1 ) {
+          moviesArr.push(`<div class="nominee">
+                            <h4>${category.movies[i].supportingActress[0]} - ${category.movies[i].name}</h4>
+                            <img src="${category.movies[i].image}">
+                          </div>
+                          <div class="nominee">
+                            <h4>${category.movies[i].supportingActress[1]} - ${category.movies[i].name}</h4>
+                            <img src="${category.movies[i].image}">
+                          </div>`);
+        } else {
+            moviesArr.push(`<div class="nominee">
+                              <h4>${category.movies[i].supportingActress} - ${category.movies[i].name}</h4>
+                              <img src="${category.movies[i].image}">
+                            </div>`);
+        }
         break;
       case "Directing":
         moviesArr.push(`<div class="nominee">

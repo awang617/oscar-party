@@ -23,7 +23,7 @@ const category_list = [
   },
   {
     name: 'Actress in a Supporting Role',
-    movies: ['Vice', 'Roma', 'If Beale Street Could Talk', 'The Favourite', 'The Favourite']
+    movies: ['Vice', 'Roma', 'If Beale Street Could Talk', 'The Favourite']
   },
   {
     name: 'Animated Feature Film',

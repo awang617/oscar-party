@@ -10,6 +10,11 @@ $(document).ready(function(){
     success: handleSuccess,
     error: handleError
   });
+
+  $categoriesList.on('click', '.nominee', (clickAlert) => {
+    console.log($(this))
+    alert(`${$(this)} clicked`)
+  })
 });
 
 function getCategoryHtml(category) {

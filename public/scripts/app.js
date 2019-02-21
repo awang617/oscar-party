@@ -65,7 +65,8 @@ $(document).ready(function(){
           name: newMovies[i].value,
           categoryName: newMovies[i].getAttribute('data-category'),
           image: '',
-          voteCount: 1
+          voteCount: 1,
+          userSubmitted: true
         });
       }
     }

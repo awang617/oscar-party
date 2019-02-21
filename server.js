@@ -30,6 +30,10 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/ballot', function ballotPage(req, res) {
+    res.sendFile(__dirname + '/views/ballot.html');
+});
+
 /*
  * JSON API Endpoints
  */
@@ -126,11 +130,11 @@ app.get('/', function homepage(req, res) {
      });
  });
 
- // route to temporarily store choices
- // look into localStorage
- app.post("/api/choices", (req, res) => {
 
- });
+//  route to get votecount page
+app.get('/votes', function votecountPage(req, res) {
+    res.sendFile(__dirname + '/views/votecount.html');
+});
 
  /**********
  * SERVER *

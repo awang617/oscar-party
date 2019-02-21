@@ -124,11 +124,8 @@ app.get('/votes', function votecountPage(req, res) {
     })
  });
 
-<<<<<<< HEAD
 //  crUd
-=======
 //  may want to change this to patch
->>>>>>> 9a4ef49bcd2bdc28730d5db7b7d1e1a81b8cb664
  app.put('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
 
@@ -147,15 +144,6 @@ app.get('/votes', function votecountPage(req, res) {
      });
  });
 
-<<<<<<< HEAD
-=======
-
-//  route to get votecount page
-app.get('/votes', function votecountPage(req, res) {
-    res.sendFile(__dirname + '/views/votecount.html');
-});
-
->>>>>>> 9a4ef49bcd2bdc28730d5db7b7d1e1a81b8cb664
  /**********
  * SERVER *
  **********/

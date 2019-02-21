@@ -27,17 +27,31 @@ $(document).ready(function(){
     for (var i = 0; i < choices.length; i++) {
       // get choices data-ids and pushes into choiceIds array
       choiceIds.push(choices[i].getAttribute('data-id'));
-    };
+    }
 
-    // save choices data-ids to sessionStorage as value of key _id
-    sessionStorage.setItem('choiceMovieId', JSON.stringify(choiceIds));
-    let savedIds = sessionStorage.getItem('choiceMovieId');
-    console.log(savedIds);
+    // store our choiceIds in sessionStorage
+    sessionStorage.setItem('choices', JSON.stringify(choiceIds));
 
-    // send user to ballot page
-    window.location.href = "/ballot";
+    // change the url to the ballot/html
+    document.location.href = '/ballot'
+    // AJAX function to store choice ids
+    // $.ajax({
+    //   method: "POST",
+    //   url: '/api/choices',
+    //   // data: choiceIds,
+    //   success: function(response) {
+    //     console.log("success!!");
+    //   },
+    //   error: function() {
+    //     console.log("error");
+    //   }
+    // });
+    // debugger;
+
+
   });
 });
+    
 
 
 /////////////////////////////////////////////////
@@ -118,6 +132,7 @@ function getAllCategoriesHtml(categories) {
 
 function render() {
   $categoriesList.empty();
+  
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
   // add event listeners

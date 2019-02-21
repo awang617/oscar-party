@@ -30,6 +30,10 @@ app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+app.get('/ballot', function ballotPage(req, res) {
+    res.sendFile(__dirname + '/views/ballot.html');
+});
+
 /*
  * JSON API Endpoints
  */
@@ -118,11 +122,6 @@ app.get('/', function homepage(req, res) {
          if (err) {console.log(err)};
          res.json(deletedMovie);
      });
- });
-
- // route to get ballot page
- app.get('/ballot', function ballotPage(req, res) {
-    res.sendFile(__dirname + '/views/ballot.html');
  });
 
 //  route to get votecount page

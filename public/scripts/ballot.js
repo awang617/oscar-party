@@ -1,5 +1,20 @@
+
+
+
+function addSuccess(json) {
+    json.voteCount += 1;
+    console.log(json.name);
+    console.log(json.voteCount);
+
+}
+
+function addError(json) {
+    console.log('error')
+}
+
 var $categoriesBallot;
 var allCategories = [];
+var choices;
 
 $(document).ready(function(){
   
@@ -16,7 +31,18 @@ $(document).ready(function(){
   // should redirect to vote count page
   // does it need to ajax call?
   // or could it just be an <a>?
-
+    choices = JSON.parse(sessionStorage.getItem('choices'))
+    console.log(choices)
+    choices.forEach( movieId => {
+        movieId.replace(/['"]+/g, '')
+        console.log(movieId)
+        $.ajax({
+            method: "PUT",
+            url: `/api/movie/${movieId}`,
+            success: addSuccess,
+            error: addError
+        })
+    })
 });
 
 
@@ -110,6 +136,7 @@ function handleError(e) {
   console.log('uh oh');
   $('#categoryTarget').text('Failed to load categories, is the server working?');
 }
+
 
 
 

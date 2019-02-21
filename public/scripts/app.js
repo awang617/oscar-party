@@ -52,9 +52,11 @@ $(document).ready(function(){
         // add new movie objects to array
         newMovieNames.push({
           name: newMovies[i].value,
+          // GET RID OF THIS
           categoryName: newMovies[i].getAttribute('data-category'),
           image: '',
-          voteCount: 1
+          voteCount: 1,
+          userSubmitted: true,
         });
       };
     };

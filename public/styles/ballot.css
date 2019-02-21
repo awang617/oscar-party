@@ -1,0 +1,17 @@
+.ballotTarget {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.nominee:hover {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+.chosen {
+  background-color: red;
+}

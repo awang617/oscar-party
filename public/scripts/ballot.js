@@ -13,6 +13,7 @@ $(document).ready(function(){
     error: handleError
   });
 
+  /*
   // grabs stored choices from landing
   choices = JSON.parse(sessionStorage.getItem('choices'))
   console.log(choices)
@@ -29,7 +30,13 @@ $(document).ready(function(){
       error: addError
     });
   });
+  */
 });
+
+// on ballot page, grab the user created movie by key/value pair in sessionStorage
+// also on ballot page, we need to add HTML to display the user created movie with edit/delete buttons under the correct category
+// highlight user created movie (add class)
+
 
 
 /////////////////////////////////////////////////
@@ -37,9 +44,10 @@ $(document).ready(function(){
 /////////////////////////////////////////////////
 // Sets HTML of category name with nominees
 function getCategoryHtml(category) {
+  let categoryNoSpaces = category.name.replace(/[\s()]/g, '');
   return `<div class="flex-item">
             <hr>
-            <h3>${category.name}</h3>
+            <h3 class="category-title " data-target="#${categoryNoSpaces}">${category.name}</h3>
             <div class="category">
               ${getMoviesList(category)}
             </div>
@@ -89,20 +97,21 @@ function render() {
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesBallot.append(categoriesHtml);
 
-  // access sessionStorage to grab ids of chosen
-  // what was saved in app.js
-  // sessionStorage.setItem('choiceMovieId', JSON.stringify(choiceIds));
-  let savedIds = sessionStorage.getItem('choiceMovieId');
-  // console.log(savedIds);  
-  // go through each saved id
-  for (var i = 0; i < savedIds.length; i++) {
-    // find nominee that matches the saved id
-    if (savedIds[i] === document.getElementsByClassName('nominee').getAttribute('data-id')) {
-      console.log(savedIds[i]);
-      // apply class chosen to that nominee
-      // how to select that nominee?
-      // .setAttribute('class', ' chosen');
-    };
+  // highlight user's choices from landing page
+  // let choiceIds = [];
+  // selects category names
+  let categoryTitles = document.getElementsByClassName("category-title");
+  for (var i = 0; i < categoryTitles.length; i++) {
+    // making category keys the category names
+    let categoryKey = categoryTitles[i].getAttribute('data-target');
+    console.log(categoryKey);
+    // stores choice IDs into variable
+    var chosenId = sessionStorage.getItem(categoryKey);
+    // match the category key to the category on the page
+    // and grabbing its niece that matches the movie ID
+    var nominatedChoice = $(`[data-target="${categoryKey}"]`).siblings().children(`[data-id="${chosenId}"]`);
+    // adding class chosen to all choices
+    nominatedChoice.addClass('chosen');
   };
 
   // add event listeners if user wants to change choice

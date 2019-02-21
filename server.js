@@ -69,9 +69,9 @@ app.get('/ballot', function ballotPage(req, res) {
  app.get('/api/category', (req, res) => {
      db.Category.find().populate('movies').exec((err, foundCategories) => {
          if (err) {console.log(err)}
-         res.json(foundCategories);
-     });
- });
+         res.json(foundCategories)
+     })
+});
 
  app.get('/api/category/:id', (req, res) => {
      const categoryId = req.params.id;
@@ -113,13 +113,22 @@ app.get('/ballot', function ballotPage(req, res) {
  });
 
 //  may want to change this to patch
- app.put('/api/movie/:id', (req, res) => {
+ app.patch('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
-
-    db.Movie.findOneAndUpdate({_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
-        if (err) {console.log(err)};
-        res.json(updatedMovie);
-    });
+    // add a property to Movie schema, userSubmitted: Boolean, and set as false for all seed.js movies
+    // when create a new move, set userSubmitted: true
+    // in app.patch, if the userSubmitted is true, update the properties with req.body
+    db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
+        if (err) {console.log(err)}
+        let isUserSubmitted = foundMovie.userSubmitted;
+        if (isUserSubmitted) {
+            foundMovie.name = reg.body.name;
+        } else {
+            foundMovie.voteCount++;
+            res.json(updatedMovie)
+        }
+    })
+    // if the userSubmitted is false, update the voteCount
  });
 
  app.delete('/api/movie/:id', (req, res) => {

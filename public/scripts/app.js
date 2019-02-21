@@ -1,6 +1,5 @@
 var $categoriesList;
 var allCategories = [];
-let clickedMovies = [];
 
 $(document).ready(function(){
   
@@ -13,15 +12,20 @@ $(document).ready(function(){
     error: handleError
   });
 
+  // submit button function
+  // send to ballot.html page
+
   // submit button click function
   $('.ballot-form').on('submit', function(e) {
     e.preventDefault();
+
     // stores choices in a HTMLCollection
     let choices = document.getElementsByClassName("chosen");
-    // creates an empty array for choice ids
+    // create an empty array for choice ids
     let choiceIds = [];
-    // iterates through choices to grab ids and add to choiceIds array
-    for (i = 0; i < choices.length; i++) {
+    // iterate through choices
+    for (var i = 0; i < choices.length; i++) {
+      // get choices data-ids and pushes into choiceIds array
       choiceIds.push(choices[i].getAttribute('data-id'));
     }
 
@@ -43,9 +47,12 @@ $(document).ready(function(){
     //   }
     // });
     // debugger;
+
+
   });
 });
     
+
 
 /////////////////////////////////////////////////
 /////////  LANDING PAGE FUNCTIONS  //////////////
@@ -148,6 +155,4 @@ function handleError(e) {
 }
 
 
-// submit button function
-// if .nominee has class .chosen, grab 'data-id' and put into clickedMovies array
-// send to ballot.html page
+

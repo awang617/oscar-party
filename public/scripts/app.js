@@ -54,6 +54,7 @@ $(document).ready(function(){
     // });
     // debugger;
     ////////////////
+    
     ///Add movie////
     let newMovies = document.getElementsByClassName("userChoice");
     let newMovieNames = [];

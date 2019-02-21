@@ -25,3 +25,12 @@ h1, h2, h3, h4 {
 .chosen {
   background-color: red;
 }
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  text-align: center;
+}

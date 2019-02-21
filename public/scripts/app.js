@@ -2,7 +2,7 @@ var $categoriesList;
 var allCategories = [];
 
 $(document).ready(function(){
-  
+
   // Populate landing page
   $categoriesList = $('#categoryTarget');
   $.ajax({
@@ -41,19 +41,51 @@ $(document).ready(function(){
     // AJAX function to store choice ids
     // $.ajax({
     //   method: "POST",
-    //   url: '/api/choices',
-    //   // data: choiceIds,
+    //   url: '',
+    //   data: choiceIds,
+
     //   success: function(response) {
     //     console.log("success!!");
     //   },
     //   error: function() {
-    //     console.log("error");
+
+    //     console.log("error this is broken");
     //   }
     // });
     // debugger;
+    ////////////////
+    ///Add movie////
+    let newMovies = document.getElementsByClassName("userChoice");
+    let newMovieNames = [];
+
+    for (i = 0; i < newMovies.length; i++) {
+      if (newMovies[i].value !== "") {
+        newMovieNames.push({
+          name: newMovies[i].value,
+          categoryName: newMovies[i].getAttribute('data-category'),
+          image: '',
+          voteCount: 1
+        });
+      }
+    }
+
+    console.log("newMovieNames", newMovieNames)
+
+    $.ajax({
+      method: "POST",
+      url: '/api/movie',
+      data: { newMovieNames },
+      success: function (response) {
+        console.log("success!! this is working");
+      },
+      error: function () {
+        console.log("error");
+      }
+    })
 
 
   });
+
 });
     
 
@@ -71,6 +103,7 @@ function getCategoryHtml(category) {
             <button class="btn btn-link" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
             <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
                 ${getMoviesList(category)}
+                <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">
             </div>
           </div>`;
 }
@@ -146,6 +179,7 @@ function render() {
     $(this).siblings().removeClass(' chosen');
     $(this).toggleClass(' chosen');
   });
+  ////////////////////
 };
 
 function handleSuccess(json) {

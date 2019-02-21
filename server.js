@@ -118,17 +118,22 @@ app.get('/ballot', function ballotPage(req, res) {
     // add a property to Movie schema, userSubmitted: Boolean, and set as false for all seed.js movies
     // when create a new move, set userSubmitted: true
     // in app.patch, if the userSubmitted is true, update the properties with req.body
+
+    
     db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
         if (err) {console.log(err)}
         let isUserSubmitted = foundMovie.userSubmitted;
+        let plusOne = foundMovie.voteCount+1;
         if (isUserSubmitted) {
-            foundMovie.name = reg.body.name;
+            db.Movie.findOneAndUpdate( {_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
+                res.json(updatedMovie);
+            })
         } else {
-            foundMovie.voteCount++;
-            res.json(updatedMovie)
+            db.Movie.findOneAndUpdate( {_id: movieId}, {voteCount: plusOne}, {new: true}, (err, updatedMovie) => {
+                res.json(updatedMovie);
+            })
         }
     })
-    // if the userSubmitted is false, update the voteCount
  });
 
  app.delete('/api/movie/:id', (req, res) => {

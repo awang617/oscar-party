@@ -127,7 +127,6 @@ let movie_list = [
     name: 'The Favourite',
     image: 'images/the-favourite.jpg',
     actress: 'Olivia Colman',
-    // [] QUESTION: LIST AS ARRAY OR TWO SEPARATE PROPERTIES?
     supportingActress: ['Emma Stone', 'Rachel Weisz'],
     director: 'Yorgos Lanthimos',
     voteCount: 0,

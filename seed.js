@@ -4,7 +4,7 @@
 const db = require ('./models');
 
 // categories
-const category_list = [
+export const category_list = [
   {
     name: 'Best Picture',
     movies: ['Black Panther', 'BlacKkKlansman', 'Bohemian Rhapsody', 'The Favourite', 'Green Book', 'Roma', 'A Star Is Born', 'Vice']
@@ -127,7 +127,6 @@ let movie_list = [
     name: 'The Favourite',
     image: 'images/the-favourite.jpg',
     actress: 'Olivia Colman',
-    // [] QUESTION: LIST AS ARRAY OR TWO SEPARATE PROPERTIES?
     supportingActress: ['Emma Stone', 'Rachel Weisz'],
     director: 'Yorgos Lanthimos',
     voteCount: 0,

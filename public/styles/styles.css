@@ -18,9 +18,15 @@ h1, h2, h3, h4 {
   text-align: center;
 }
 
-input {
+.chosen {
+  background-color: red;
+}
+
+input[type="text"] {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin-left: 40px;
+  margin-right: 40px;
   margin-top: 20px;
+  text-align: center;
 }

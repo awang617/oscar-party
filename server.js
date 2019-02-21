@@ -41,7 +41,7 @@ app.get('/', function homepage(req, res) {
 // [x] movie get by id route
 // [] movie delete by id route
 // [] movie post route
-// [] movie put by id route 
+// [] movie put by id route
 
 
  app.get('/api', (req, res) => {
@@ -94,18 +94,24 @@ app.get('/', function homepage(req, res) {
  });
 
  app.post('/api/movie', (req, res) => {
-    const newMovie = new db.Movie({
-        name: req.body.name,
-        // other properties?
-    });
-    newMovie.save( (err, newMovie) => {
-        if (err) {console.log(err)}
-        res.json(newMovie);
-    });
+    let userChoiceData = req.body.newMovieNames;
+
+    userChoiceData.forEach(choice => {
+        const newMovie = new db.Movie({
+            name: choice.name,
+            voteCount: choice.voteCount
+        });
+        newMovie.save((err, newMovie) => {
+            if (err) { console.log(err) }
+            res.json(newMovie);
+        });
+    })
  });
 
+//  may want to change this to patch
  app.put('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
+
     db.Movie.findOneAndUpdate({_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
         if (err) {console.log(err)};
         res.json(updatedMovie);
@@ -118,6 +124,12 @@ app.get('/', function homepage(req, res) {
          if (err) {console.log(err)};
          res.json(deletedMovie);
      });
+ });
+
+ // route to temporarily store choices
+ // look into localStorage
+ app.post("/api/choices", (req, res) => {
+
  });
 
  /**********

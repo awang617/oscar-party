@@ -69,7 +69,7 @@ function getCategoryHtml(category) {
                 ${getMoviesList(category)}
             </div>
           </div>`;
-}
+};
 
 function getMoviesList(category) {
   let moviesArr = [];
@@ -128,7 +128,7 @@ function getMoviesList(category) {
 
 function getAllCategoriesHtml(categories) {
   return categories.map(getCategoryHtml).join("");
-}
+};
 
 function render() {
   $categoriesList.empty();
@@ -147,12 +147,12 @@ function render() {
 function handleSuccess(json) {
   allCategories = json;
   render();
-}
+};
 
 function handleError(e) {
   console.log('uh oh');
   $('#categoryTarget').text('Failed to load categories, is the server working?');
-}
+};
 
 
 

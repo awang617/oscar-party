@@ -1,17 +1,3 @@
-
-
-
-function addSuccess(json) {
-    json.voteCount += 1;
-    console.log(json.name);
-    console.log(json.voteCount);
-
-}
-
-function addError(json) {
-    console.log('error')
-}
-
 var $categoriesBallot;
 var allCategories = [];
 var choices;
@@ -27,29 +13,29 @@ $(document).ready(function(){
     error: handleError
   });
 
-  // see what others voted for button
-  // should redirect to vote count page
-  // does it need to ajax call?
-  // or could it just be an <a>?
-    choices = JSON.parse(sessionStorage.getItem('choices'))
-    console.log(choices)
-    choices.forEach( movieId => {
-        movieId.replace(/['"]+/g, '')
-        console.log(movieId)
-        $.ajax({
-            method: "PUT",
-            url: `/api/movie/${movieId}`,
-            success: addSuccess,
-            error: addError
-        })
-    })
+  // grabs stored choices from landing
+  choices = JSON.parse(sessionStorage.getItem('choices'))
+  console.log(choices)
+  // iterate through each choice
+  choices.forEach( movieId => {
+    // make movieId a string
+    movieId.replace(/['"]+/g, '')
+    console.log(movieId)
+    // AJAX PUT call to increase vote count of chosen movies
+    $.ajax({
+      method: "PUT",
+      url: `/api/movie/${movieId}`,
+      success: addSuccess,
+      error: addError
+    });
+  });
 });
 
 
 /////////////////////////////////////////////////
 /////////  BALLOT PAGE FUNCTIONS  //////////////
 /////////////////////////////////////////////////
-
+// Sets HTML of category name with nominees
 function getCategoryHtml(category) {
   return `<div class="flex-item">
             <hr>
@@ -58,8 +44,9 @@ function getCategoryHtml(category) {
               ${getMoviesList(category)}
             </div>
           </div>`;
-}
+};
 
+// Sets HTML of nominees
 function getMoviesList(category) {
   let moviesArr = [];
   for (let i = 0; i < category.movies.length; i++) {
@@ -91,16 +78,17 @@ function getMoviesList(category) {
   return moviesArr.join('');
 };
 
+// adds all categories HTML together
 function getAllCategoriesHtml(categories) {
   return categories.map(getCategoryHtml).join("");
-}
+};
 
+// puts HTML on the page
 function render() {
   $categoriesBallot.empty();
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesBallot.append(categoriesHtml);
 
-  /*
   // access sessionStorage to grab ids of chosen
   // what was saved in app.js
   // sessionStorage.setItem('choiceMovieId', JSON.stringify(choiceIds));
@@ -116,7 +104,6 @@ function render() {
       // .setAttribute('class', ' chosen');
     };
   };
-  */
 
   // add event listeners if user wants to change choice
   $('.nominee').on('click', function(event) {
@@ -127,15 +114,41 @@ function render() {
   });
 };
 
+////////////////////////////////////////////////////////////////////
+///////////////  POPULATE PAGE AJAX FUNCTIONS  /////////////////////
+////////////////////////////////////////////////////////////////////
+
 function handleSuccess(json) {
   allCategories = json;
   render();
-}
+};
 
 function handleError(e) {
   console.log('uh oh');
   $('#categoryTarget').text('Failed to load categories, is the server working?');
-}
+};
+
+
+////////////////////////////////////////////////////////////////////
+//////////  MATCH CHOICES FROM LANDING TO BALLOT PAGE  /////////////
+////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////
+//////////////  ADDING VOTE COUNT AJAX FUNCTIONS ///////////////////
+////////////////////////////////////////////////////////////////////
+
+function addSuccess(json) {
+  json.voteCount += 1;
+  console.log(json.name);
+  console.log(json.voteCount);
+
+};
+
+function addError(json) {
+  console.log('error')
+};
 
 
 

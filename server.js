@@ -97,6 +97,20 @@ app.get('/ballot', function ballotPage(req, res) {
      });
  });
 
+// bogus post route used for testing the patch route
+// can deleted later if no longer needed
+//  app.post('/api/testroute', (req, res) => {
+//     const newMovie = new db.Movie({
+//         name: req.body.name,
+//         voteCount: req.body.voteCount,
+//         userSubmitted: req.body.userSubmitted
+//     });
+//     newMovie.save((err, newMovie) => {
+//         if (err) { console.log(err) }
+//         res.json(newMovie);
+//     });
+// });
+
  app.post('/api/movie', (req, res) => {
     let userChoiceData = req.body.newMovieNames;
 
@@ -115,21 +129,18 @@ app.get('/ballot', function ballotPage(req, res) {
 //  may want to change this to patch
  app.patch('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
-    // add a property to Movie schema, userSubmitted: Boolean, and set as false for all seed.js movies
-    // when create a new move, set userSubmitted: true
-    // in app.patch, if the userSubmitted is true, update the properties with req.body
-
-    
     db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
         if (err) {console.log(err)}
         let isUserSubmitted = foundMovie.userSubmitted;
         let plusOne = foundMovie.voteCount+1;
         if (isUserSubmitted) {
             db.Movie.findOneAndUpdate( {_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
+                if (err) {console.log(err)}
                 res.json(updatedMovie);
             })
         } else {
             db.Movie.findOneAndUpdate( {_id: movieId}, {voteCount: plusOne}, {new: true}, (err, updatedMovie) => {
+                if (err) {console.log(err)}
                 res.json(updatedMovie);
             })
         }

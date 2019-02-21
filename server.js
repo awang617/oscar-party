@@ -120,12 +120,15 @@ app.get('/', function homepage(req, res) {
      });
  });
 
- // route to temporarily store choices
- // look into localStorage  
- app.post("/api/choices", (req, res) => {
-    
+ // route to get ballot page
+ app.get('/ballot', function ballotPage(req, res) {
+    res.sendFile(__dirname + '/views/ballot.html');
  });
 
+//  route to get votecount page
+app.get('/votes', function votecountPage(req, res) {
+    res.sendFile(__dirname + '/views/votecount.html');
+});
  /**********
  * SERVER *
  **********/

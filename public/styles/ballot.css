@@ -1,0 +1,26 @@
+body {
+  box-sizing: border-box;
+}
+
+#ballotTarget {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.flex-item {
+  /* need to make responsive */
+  width: 30vw;
+}
+
+.nominee:hover {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+.chosen {
+  background-color: red;
+}

@@ -12,9 +12,6 @@ $(document).ready(function(){
     error: handleError
   });
 
-  // submit button function
-  // send to ballot.html page
-
   // submit button click function
   $('.ballot-form').on('submit', function(e) {
     e.preventDefault();
@@ -27,50 +24,43 @@ $(document).ready(function(){
     for (var i = 0; i < choices.length; i++) {
       // get choices data-ids and pushes into choiceIds array
       choiceIds.push(choices[i].getAttribute('data-id'));
-    }
+    };
 
-    // store our choiceIds in sessionStorage
-    sessionStorage.setItem('choices', JSON.stringify(choiceIds));
+    let categoryTitles = document.getElementsByClassName("category-title");
+    for (var i = 0; i < categoryTitles.length; i++) {
+      let categoryKey = categoryTitles[i].getAttribute('data-target');
+      // set key to cateogry name in order to store choice movie id with it
+      sessionStorage.setItem(categoryKey, choiceIds[i]);
+    };
 
-    // change the url to the ballot/html
+    /*
+    // redirect to the ballot
     if (choiceIds.length < 24) {
       alert('You must choose a movie for each category.')
     } else {
       document.location.href = '/ballot'
     }
-    // AJAX function to store choice ids
-    // $.ajax({
-    //   method: "POST",
-    //   url: '',
-    //   data: choiceIds,
-
-    //   success: function(response) {
-    //     console.log("success!!");
-    //   },
-    //   error: function() {
-
-    //     console.log("error this is broken");
-    //   }
-    // });
-    // debugger;
-    ////////////////
-    ///Add movie////
+    */
+    
+    // Add movie from user input forms
+    // grabs userChoice forms
     let newMovies = document.getElementsByClassName("userChoice");
     let newMovieNames = [];
-
+  
     for (i = 0; i < newMovies.length; i++) {
       if (newMovies[i].value !== "") {
+        // add new movie objects to array
         newMovieNames.push({
           name: newMovies[i].value,
           categoryName: newMovies[i].getAttribute('data-category'),
           image: '',
           voteCount: 1
         });
-      }
-    }
+      };
+    };
+    console.log("newMovieNames", newMovieNames);
 
-    console.log("newMovieNames", newMovieNames)
-
+    // AJAX call to add movie to database
     $.ajax({
       method: "POST",
       url: '/api/movie',
@@ -81,10 +71,13 @@ $(document).ready(function(){
       error: function () {
         console.log("error");
       }
-    })
+    });
 
+    // when user creates a new movie,
+    // we need to know which category they created it in
+    // store that category name as a key in sessionStorage
 
-  });
+  }); 
 
 });
     
@@ -100,7 +93,7 @@ function getCategoryHtml(category) {
   // uses Bootstrap classes and ids to create collapsing categories
   return `<div class="accordion" id="accordionExample">
             <hr>
-            <button class="btn btn-link" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
+            <button class="btn btn-link category-title" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
             <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
                 ${getMoviesList(category)}
                 <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">

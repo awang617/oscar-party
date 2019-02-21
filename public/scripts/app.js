@@ -25,19 +25,24 @@ $(document).ready(function(){
       choiceIds.push(choices[i].getAttribute('data-id'));
     }
 
+    // store our choiceIds in sessionStorage
+    sessionStorage.setItem('choices', JSON.stringify(choiceIds));
+
+    // change the url to the ballot/html
+    document.location.href = '/ballot'
     // AJAX function to store choice ids
-    $.ajax({
-      method: "POST",
-      url: '',
-      data: choiceIds,
-      success: function(response) {
-        console.log("success!!");
-      },
-      error: function() {
-        console.log("error");
-      }
-    });
-    debugger;
+    // $.ajax({
+    //   method: "POST",
+    //   url: '/api/choices',
+    //   // data: choiceIds,
+    //   success: function(response) {
+    //     console.log("success!!");
+    //   },
+    //   error: function() {
+    //     console.log("error");
+    //   }
+    // });
+    // debugger;
   });
 });
     
@@ -109,25 +114,17 @@ function getMoviesList(category) {
                           <h4>${category.movies[i].name}</h4>
                           <img src="${category.movies[i].image}">
                         </div>`);
-        // moviesArr.push(`<img src='${category.movies[i].image}'>`)
     };
   };
-  console.log(moviesArr);
-  return moviesArr;
-  // return moviesArr.join('');
+  return moviesArr.join('');
 };
 
 function getAllCategoriesHtml(categories) {
-  console.log();
-  return getCategoryHtml(categories[0]);
-  // return categories.map(getCategoryHtml).join("");
+  return categories.map(getCategoryHtml).join("");
 }
 
 function render() {
-  // $categoriesList.empty();
-  // getMoviesList().forEach(movie=> {
-  //   $categoriesList.append(movie)
-  // })
+  $categoriesList.empty();
   
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);

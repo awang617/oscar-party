@@ -18,15 +18,21 @@ $(document).ready(function(){
 /////////////////////////////////////////////////
 
 // iterates through movies array to get name and votecount and add to moviesArr as HTML code
+// function getMoviesHtml(movies) {
+//   let moviesArr = [];
+//   for (let i = 0; i < movies.length; i++) {
+//   moviesArr.push(`<h4>${movies[i].name} - ${movies[i].voteCount}</h4>`);
+//   };
+//   return moviesArr.join('');
+// };
+
 function getMoviesHtml(movies) {
-  let moviesArr = [];
-  for (let i = 0; i < movies.length; i++) {
-  moviesArr.push(`<h4>${movies[i].name} - ${movies[i].voteCount}</h4>`);
-  };
-  return moviesArr.join('');
+  return `<hr>
+          <div id="moviesList">${movies.name} - ${movies.voteCount}</div>
+          `;
 };
 
-// 
+//
 function getAllMoviesHtml(movies) {
   return movies.map(getMoviesHtml).join("");
 }

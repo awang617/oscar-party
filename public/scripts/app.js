@@ -33,20 +33,20 @@ $(document).ready(function(){
       sessionStorage.setItem(categoryKey, choiceIds[i]);
     };
 
-    /*
+
     // redirect to the ballot
     if (choiceIds.length < 24) {
       alert('You must choose a movie for each category.')
     } else {
       document.location.href = '/ballot'
     }
-    */
-    
+
+
     // Add movie from user input forms
     // grabs userChoice forms
     let newMovies = document.getElementsByClassName("userChoice");
     let newMovieNames = [];
-  
+
     for (i = 0; i < newMovies.length; i++) {
       if (newMovies[i].value !== "") {
         // add new movie objects to array
@@ -77,10 +77,10 @@ $(document).ready(function(){
     // we need to know which category they created it in
     // store that category name as a key in sessionStorage
 
-  }); 
+  });
 
 });
-    
+
 
 
 /////////////////////////////////////////////////
@@ -162,7 +162,7 @@ function getAllCategoriesHtml(categories) {
 
 function render() {
   $categoriesList.empty();
-  
+
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
   // add event listeners

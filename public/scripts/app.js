@@ -3,6 +3,7 @@ var allCategories = [];
 let clickedMovies = [];
 
 $(document).ready(function(){
+  
   // Populate landing page
   $categoriesList = $('#categoryTarget');
   $.ajax({
@@ -10,6 +11,33 @@ $(document).ready(function(){
     url: '/api/category',
     success: handleSuccess,
     error: handleError
+  });
+
+  // submit button click function
+  $('.ballot-form').on('submit', function(e) {
+    e.preventDefault();
+    // stores choices in a HTMLCollection
+    let choices = document.getElementsByClassName("chosen");
+    // creates an empty array for choice ids
+    let choiceIds = [];
+    // iterates through choices to grab ids and add to choiceIds array
+    for (i = 0; i < choices.length; i++) {
+      choiceIds.push(choices[i].getAttribute('data-id'));
+    }
+
+    // AJAX function to store choice ids
+    $.ajax({
+      method: "POST",
+      url: '',
+      data: choiceIds,
+      success: function(response) {
+        console.log("success!!");
+      },
+      error: function() {
+        console.log("error");
+      }
+    });
+    debugger;
   });
 });
 
@@ -95,7 +123,8 @@ function render() {
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
   // add event listeners
-  $('.nominee').on('click', function() {
+  $('.nominee').on('click', function(event) {
+    event.preventDefault();
     // so that only one element is "chosen"
     $(this).siblings().removeClass(' chosen');
     $(this).toggleClass(' chosen');

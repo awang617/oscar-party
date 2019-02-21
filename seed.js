@@ -4,7 +4,7 @@
 const db = require ('./models');
 
 // categories
-const category_list = [
+export const category_list = [
   {
     name: 'Best Picture',
     movies: ['Black Panther', 'BlacKkKlansman', 'Bohemian Rhapsody', 'The Favourite', 'Green Book', 'Roma', 'A Star Is Born', 'Vice']

@@ -52,7 +52,7 @@ app.get('/votes', function votecountPage(req, res) {
 // [x] movie get by id route
 // [] movie delete by id route
 // [] movie post route
-// [] movie put by id route 
+// [] movie put by id route
 
 // all routes
  app.get('/api', (req, res) => {
@@ -110,19 +110,28 @@ app.get('/votes', function votecountPage(req, res) {
 
 //  Crud
  app.post('/api/movie', (req, res) => {
-    const newMovie = new db.Movie({
-        name: req.body.name,
-        // other properties?
-    });
-    newMovie.save( (err, newMovie) => {
-        if (err) {console.log(err)}
-        res.json(newMovie);
-    });
+    let userChoiceData = req.body.newMovieNames;
+
+    userChoiceData.forEach(choice => {
+        const newMovie = new db.Movie({
+            name: choice.name,
+            voteCount: choice.voteCount
+        });
+        newMovie.save((err, newMovie) => {
+            if (err) { console.log(err) }
+            res.json(newMovie);
+        });
+    })
  });
 
+<<<<<<< HEAD
 //  crUd
+=======
+//  may want to change this to patch
+>>>>>>> 9a4ef49bcd2bdc28730d5db7b7d1e1a81b8cb664
  app.put('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
+
     db.Movie.findOneAndUpdate({_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
         if (err) {console.log(err)};
         res.json(updatedMovie);
@@ -138,6 +147,15 @@ app.get('/votes', function votecountPage(req, res) {
      });
  });
 
+<<<<<<< HEAD
+=======
+
+//  route to get votecount page
+app.get('/votes', function votecountPage(req, res) {
+    res.sendFile(__dirname + '/views/votecount.html');
+});
+
+>>>>>>> 9a4ef49bcd2bdc28730d5db7b7d1e1a81b8cb664
  /**********
  * SERVER *
  **********/

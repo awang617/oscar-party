@@ -1,6 +1,5 @@
 var $categoriesList;
 var allCategories = [];
-let clickedMovies = [];
 
 $(document).ready(function(){
   
@@ -12,6 +11,9 @@ $(document).ready(function(){
     success: handleSuccess,
     error: handleError
   });
+
+  // submit button function
+  // send to ballot.html page
 
   // submit button click function
   $('.ballot-form').on('submit', function(e) {
@@ -40,6 +42,7 @@ $(document).ready(function(){
     debugger;
   });
 });
+
 
 /////////////////////////////////////////////////
 /////////  LANDING PAGE FUNCTIONS  //////////////
@@ -108,7 +111,6 @@ function getMoviesList(category) {
                           <h4>${category.movies[i].name}</h4>
                           <img src="${category.movies[i].image}">
                         </div>`);
-        // moviesArr.push(`<img src='${category.movies[i].image}'>`)
     };
   };
   return moviesArr.join('');
@@ -142,6 +144,4 @@ function handleError(e) {
 }
 
 
-// submit button function
-// if .nominee has class .chosen, grab 'data-id' and put into clickedMovies array
-// send to ballot.html page
+

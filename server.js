@@ -120,6 +120,12 @@ app.get('/', function homepage(req, res) {
      });
  });
 
+ // route to temporarily store choices
+ // look into localStorage  
+ app.post("/api/choices", (req, res) => {
+    
+ });
+
  /**********
  * SERVER *
  **********/

@@ -39,27 +39,27 @@ function getMoviesList(category) {
   for (let i = 0; i < category.movies.length; i++) {
     switch(category.name) {
       case "Actor in a Leading Role":
-        moviesArr.push(`<h4 class="nominee">${category.movies[i].actor} - ${category.movies[i].name}</h4>`);
+        moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].actor} - ${category.movies[i].name}</h4>`);
         break;
       case "Actress in a Leading Role":
-        moviesArr.push(`<h4 class="nominee">${category.movies[i].actress} - ${category.movies[i].name}</h4>`);
+        moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].actress} - ${category.movies[i].name}</h4>`);
         break;
       case "Actor in a Supporting Role":
-        moviesArr.push(`<h4 class="nominee">${category.movies[i].supportingActor} - ${category.movies[i].name}</h4>`);
+        moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].supportingActor} - ${category.movies[i].name}</h4>`);
         break;
       case "Actress in a Supporting Role":
         if ( category.movies[i].supportingActress.length > 1 ) {
-          moviesArr.push(`<h4 class="nominee">${category.movies[i].supportingActress[0]} - ${category.movies[i].name}</h4>
-                            <h4 class="nominee">${category.movies[i].supportingActress[1]} - ${category.movies[i].name}</h4>`);
+          moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].supportingActress[0]} - ${category.movies[i].name}</h4>
+                          <h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].supportingActress[1]} - ${category.movies[i].name}</h4>`);
         } else {
-            moviesArr.push(`<h4 class="nominee">${category.movies[i].supportingActress} - ${category.movies[i].name}</h4>`);
+            moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].supportingActress} - ${category.movies[i].name}</h4>`);
         }
         break;
       case "Directing":
-        moviesArr.push(`<h4 class="nominee">${category.movies[i].director} - ${category.movies[i].name}</h4>`);
+        moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].director} - ${category.movies[i].name}</h4>`);
         break;
       default:
-        moviesArr.push(`<h4 class="nominee">${category.movies[i].name}</h4>`);
+        moviesArr.push(`<h4 class="nominee" data-id="${category.movies[i]._id}">${category.movies[i].name}</h4>`);
     };
   };
   return moviesArr.join('');
@@ -73,7 +73,23 @@ function render() {
   $categoriesList.empty();
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
-  // add event listeners
+
+  // access sessionStorage to grab ids of chosen
+  // what was saved in app.js
+  // sessionStorage.setItem('choiceMovieId', JSON.stringify(choiceIds));
+  let savedIds = sessionStorage.getItem('choiceMovieId');
+  // console.log(savedIds);  
+  // go through each saved id
+  for (var i = 0; i < savedIds.length; i++) {
+    // find nominee that matches the saved id
+    if (savedId[i] === document.getElementsByClassName('nominee').getAttribute('data-id')) {
+      // apply class chosen to that nominee
+      // how to select that nominee?
+      // .setAttribute('class', ' chosen');
+    };
+  };
+
+  // add event listeners if user wants to change choice
   $('.nominee').on('click', function(event) {
     event.preventDefault();
     // so that only one element is "chosen"

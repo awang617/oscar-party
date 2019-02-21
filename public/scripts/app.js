@@ -35,8 +35,7 @@ $(document).ready(function(){
     console.log(savedIds);
 
     // send user to ballot page
-    // [] ERROR - this is the right way to change pages, but 'Cannot GET /ballot.html'
-    // window.location.href = "/ballot.html";
+    window.location.href = "/ballot";
   });
 });
 

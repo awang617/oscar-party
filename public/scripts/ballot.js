@@ -19,7 +19,6 @@ $(document).ready( function() {
 
 function addSuccess(json) {
     console.log(json.name);
-    json.voteCount++;
     console.log(json.voteCount);
 
 }

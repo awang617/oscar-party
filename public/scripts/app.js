@@ -16,16 +16,23 @@ $(document).ready(function(){
   })
 });
 
+///////////////////
+//INDEX FUNCTIONS//
+///////////////////
+
 function getCategoryHtml(category) {
-  return `<div>
+  // removes spaces and () from category name in order to be used as ids
+  let categoryNoSpaces = category.name.replace(/[\s()]/g, '');
+  // uses Bootstrap classes and ids to create collapsing categories
+  return `<div class="accordion" id="accordionExample">
             <hr>
-            <h3 class="trigger-toggle">${category.name}</h3>
-            <div class="category hidden">
-              ${getMoviesList(category)}
-              <br>
-              <input type="text" id="yourChoice" name="yourChoice" placeholder="What should have won?">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
+            <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
+                ${getMoviesList(category)}
+                <input type="text" placeholder="What should have won?">
             </div>
           </div>`;
+          // need to somehow give distinct names to each category's id in order for the collapse to work on one category at a time.
 }
 
 function getMoviesList(category) {
@@ -74,7 +81,7 @@ function getMoviesList(category) {
                         </div>`);
         break;
       default:
-        moviesArr.push(`<div class='nominee'>
+        moviesArr.push(`<div class="nominee">
                           <h4>${category.movies[i].name}</h4>
                           <img src="${category.movies[i].image}">
                         </div>`);
@@ -92,14 +99,6 @@ function render() {
   $categoriesList.empty();
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
-
-  $('.category').first().removeClass('hidden');
-
-  $(".trigger-toggle").on('click', function() {
-    $('.category:not(.hidden)').addClass('hidden');
- 
-    $(this).siblings('.category').toggleClass('hidden');
-  })
 }
 
 function handleSuccess(json) {
@@ -111,3 +110,7 @@ function handleError(e) {
   console.log('uh oh');
   $('#categoryTarget').text('Failed to load categories, is the server working?');
 }
+
+////////////////////
+//BALLOT FUNCTIONS//
+////////////////////

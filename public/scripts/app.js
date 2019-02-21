@@ -33,7 +33,11 @@ $(document).ready(function(){
     sessionStorage.setItem('choices', JSON.stringify(choiceIds));
 
     // change the url to the ballot/html
-    document.location.href = '/ballot'
+    if (choiceIds.length < 24) {
+      alert('You must choose a movie for each category.')
+    } else {
+      document.location.href = '/ballot'
+    }
     // AJAX function to store choice ids
     // $.ajax({
     //   method: "POST",

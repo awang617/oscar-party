@@ -1,7 +1,16 @@
-.ballotTarget {
+body {
+  box-sizing: border-box;
+}
+
+#ballotTarget {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.flex-item {
+  /* need to make responsive */
+  width: 30vw;
 }
 
 .nominee:hover {

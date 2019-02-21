@@ -1,4 +1,4 @@
-var $categoriesList;
+var $categoriesBallot;
 var allCategories = [];
 
 $(document).ready(function(){
@@ -25,7 +25,7 @@ $(document).ready(function(){
 /////////////////////////////////////////////////
 
 function getCategoryHtml(category) {
-  return `<div>
+  return `<div class="flex-item">
             <hr>
             <h3>${category.name}</h3>
             <div class="category">
@@ -70,10 +70,11 @@ function getAllCategoriesHtml(categories) {
 }
 
 function render() {
-  $categoriesList.empty();
+  $categoriesBallot.empty();
   let categoriesHtml = getAllCategoriesHtml(allCategories);
-  $categoriesList.append(categoriesHtml);
+  $categoriesBallot.append(categoriesHtml);
 
+  /*
   // access sessionStorage to grab ids of chosen
   // what was saved in app.js
   // sessionStorage.setItem('choiceMovieId', JSON.stringify(choiceIds));
@@ -82,12 +83,14 @@ function render() {
   // go through each saved id
   for (var i = 0; i < savedIds.length; i++) {
     // find nominee that matches the saved id
-    if (savedId[i] === document.getElementsByClassName('nominee').getAttribute('data-id')) {
+    if (savedIds[i] === document.getElementsByClassName('nominee').getAttribute('data-id')) {
+      console.log(savedIds[i]);
       // apply class chosen to that nominee
       // how to select that nominee?
       // .setAttribute('class', ' chosen');
     };
   };
+  */
 
   // add event listeners if user wants to change choice
   $('.nominee').on('click', function(event) {

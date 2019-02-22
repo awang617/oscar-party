@@ -53,16 +53,25 @@ p {
   width: 30vw;
 }
 
-.nominee:hover {
-  cursor: pointer;
-}
-
 .chosen {
   border: solid black;
 }
 
-/* BUTTON */
-button {
+/* BUTTONS */
+
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: #B49B57;
+}
+
+#votesPage {
   margin-top: 20px;
   background-color: black;
   border: none;
@@ -82,18 +91,8 @@ button {
   text-decoration: none;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:visited {
+.deleteBtn, .edit-movie-submit-button, .edit-movie-button {
   color: #B49B57;
-}
-
-.deleteBtn{
-  display: inline;
+  background-color: black;
+  border-radius: 12px;
 }

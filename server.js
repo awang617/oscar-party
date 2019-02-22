@@ -25,14 +25,21 @@ app.use(express.static('public'));
 /*
  * HTML Endpoints
  */
-
+//  route to serve landing page
 app.get('/', function homepage(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+//  route to serve ballot page
 app.get('/ballot', function ballotPage(req, res) {
     res.sendFile(__dirname + '/views/ballot.html');
 });
+
+//  route to serve votecount page
+app.get('/votes', function votecountPage(req, res) {
+    res.sendFile(__dirname + '/views/votecount.html');
+});
+
 
 /*
  * JSON API Endpoints
@@ -47,7 +54,7 @@ app.get('/ballot', function ballotPage(req, res) {
 // [] movie post route
 // [] movie put by id route
 
-
+// all routes
  app.get('/api', (req, res) => {
      res.json({
          message: 'Welcome to the 2019 Oscar Party! Are you ready to choose your winners for each category?',
@@ -66,6 +73,7 @@ app.get('/ballot', function ballotPage(req, res) {
      });
  });
 
+//  cRud
  app.get('/api/category', (req, res) => {
      db.Category.find().populate('movies').exec((err, foundCategories) => {
          if (err) {console.log(err)}
@@ -73,6 +81,7 @@ app.get('/ballot', function ballotPage(req, res) {
      })
 });
 
+//  cRud
  app.get('/api/category/:id', (req, res) => {
      const categoryId = req.params.id;
      db.Category.findOne({_id: categoryId}).populate('movies').exec((err, foundCategory) => {
@@ -81,6 +90,7 @@ app.get('/ballot', function ballotPage(req, res) {
      });
  });
 
+//  cRud
  app.get('/api/movie', (req, res) => {
     db.Movie.find( (err, foundMovies) => {
         if (err) {console.log(err)}
@@ -88,6 +98,7 @@ app.get('/ballot', function ballotPage(req, res) {
     });
  });
 
+//  cRud
  app.get('/api/movie/:id', (req, res) => {
      const movieId = req.params.id;
 
@@ -96,6 +107,7 @@ app.get('/ballot', function ballotPage(req, res) {
          res.json(foundMovie)
      });
  });
+
 
 // bogus post route used for testing the patch route
 // can deleted later if no longer needed
@@ -111,6 +123,7 @@ app.get('/ballot', function ballotPage(req, res) {
 //     });
 // });
 
+//  Crud
  app.post('/api/movie', (req, res) => {
     let userChoiceData = req.body.newMovieNames;
 
@@ -126,6 +139,7 @@ app.get('/ballot', function ballotPage(req, res) {
     })
  });
 
+//  crUd
 //  may want to change this to patch
  app.patch('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
@@ -149,6 +163,7 @@ app.get('/ballot', function ballotPage(req, res) {
     })
  });
 
+//  cruD
  app.delete('/api/movie/:id', (req, res) => {
      const movieId = req.params.id;
      db.Movie.findOneAndDelete( {_id: movieId}, (err, deletedMovie) => {
@@ -156,12 +171,6 @@ app.get('/ballot', function ballotPage(req, res) {
          res.json(deletedMovie);
      });
  });
-
-
-//  route to get votecount page
-app.get('/votes', function votecountPage(req, res) {
-    res.sendFile(__dirname + '/views/votecount.html');
-});
 
  /**********
  * SERVER *

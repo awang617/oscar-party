@@ -1,17 +1,3 @@
-
-
-
-function addSuccess(json) {
-    json.voteCount += 1;
-    console.log(json.name);
-    console.log(json.voteCount);
-
-}
-
-function addError(json) {
-    console.log('error')
-}
-
 var $categoriesBallot;
 var allCategories = [];
 var choices;
@@ -27,39 +13,48 @@ $(document).ready(function(){
     error: handleError
   });
 
-  // see what others voted for button
-  // should redirect to vote count page
-  // does it need to ajax call?
-  // or could it just be an <a>?
-    choices = JSON.parse(sessionStorage.getItem('choices'))
-    console.log(choices)
-    choices.forEach( movieId => {
-        movieId.replace(/['"]+/g, '')
-        console.log(movieId)
-        $.ajax({
-            method: "PUT",
-            url: `/api/movie/${movieId}`,
-            success: addSuccess,
-            error: addError
-        })
-    })
+  /*
+  // grabs stored choices from landing
+  choices = JSON.parse(sessionStorage.getItem('choices'))
+  console.log(choices)
+  // iterate through each choice
+  choices.forEach( movieId => {
+    // make movieId a string
+    movieId.replace(/['"]+/g, '')
+    console.log(movieId)
+    // AJAX PUT call to increase vote count of chosen movies
+    $.ajax({
+      method: "PUT",
+      url: `/api/movie/${movieId}`,
+      success: addSuccess,
+      error: addError
+    });
+  });
+  */
 });
+
+// on ballot page, grab the user created movie by key/value pair in sessionStorage
+// also on ballot page, we need to add HTML to display the user created movie with edit/delete buttons under the correct category
+// highlight user created movie (add class)
+
 
 
 /////////////////////////////////////////////////
 /////////  BALLOT PAGE FUNCTIONS  //////////////
 /////////////////////////////////////////////////
-
+// Sets HTML of category name with nominees
 function getCategoryHtml(category) {
+  let categoryNoSpaces = category.name.replace(/[\s()]/g, '');
   return `<div class="flex-item">
             <hr>
-            <h3>${category.name}</h3>
+            <h3 class="category-title " data-target="#${categoryNoSpaces}">${category.name}</h3>
             <div class="category">
               ${getMoviesList(category)}
             </div>
           </div>`;
-}
+};
 
+// Sets HTML of nominees
 function getMoviesList(category) {
   let moviesArr = [];
   for (let i = 0; i < category.movies.length; i++) {
@@ -91,32 +86,33 @@ function getMoviesList(category) {
   return moviesArr.join('');
 };
 
+// adds all categories HTML together
 function getAllCategoriesHtml(categories) {
   return categories.map(getCategoryHtml).join("");
-}
+};
 
+// puts HTML on the page
 function render() {
   $categoriesBallot.empty();
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesBallot.append(categoriesHtml);
 
-  /*
-  // access sessionStorage to grab ids of chosen
-  // what was saved in app.js
-  // sessionStorage.setItem('choiceMovieId', JSON.stringify(choiceIds));
-  let savedIds = sessionStorage.getItem('choiceMovieId');
-  // console.log(savedIds);  
-  // go through each saved id
-  for (var i = 0; i < savedIds.length; i++) {
-    // find nominee that matches the saved id
-    if (savedIds[i] === document.getElementsByClassName('nominee').getAttribute('data-id')) {
-      console.log(savedIds[i]);
-      // apply class chosen to that nominee
-      // how to select that nominee?
-      // .setAttribute('class', ' chosen');
-    };
+  // highlight user's choices from landing page
+  // let choiceIds = [];
+  // selects category names
+  let categoryTitles = document.getElementsByClassName("category-title");
+  for (var i = 0; i < categoryTitles.length; i++) {
+    // making category keys the category names
+    let categoryKey = categoryTitles[i].getAttribute('data-target');
+    console.log(categoryKey);
+    // stores choice IDs into variable
+    var chosenId = sessionStorage.getItem(categoryKey);
+    // match the category key to the category on the page
+    // and grabbing its niece that matches the movie ID
+    var nominatedChoice = $(`[data-target="${categoryKey}"]`).siblings().children(`[data-id="${chosenId}"]`);
+    // adding class chosen to all choices
+    nominatedChoice.addClass('chosen');
   };
-  */
 
   // add event listeners if user wants to change choice
   $('.nominee').on('click', function(event) {
@@ -127,15 +123,41 @@ function render() {
   });
 };
 
+////////////////////////////////////////////////////////////////////
+///////////////  POPULATE PAGE AJAX FUNCTIONS  /////////////////////
+////////////////////////////////////////////////////////////////////
+
 function handleSuccess(json) {
   allCategories = json;
   render();
-}
+};
 
 function handleError(e) {
   console.log('uh oh');
   $('#categoryTarget').text('Failed to load categories, is the server working?');
-}
+};
+
+
+////////////////////////////////////////////////////////////////////
+//////////  MATCH CHOICES FROM LANDING TO BALLOT PAGE  /////////////
+////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////
+//////////////  ADDING VOTE COUNT AJAX FUNCTIONS ///////////////////
+////////////////////////////////////////////////////////////////////
+
+function addSuccess(json) {
+  json.voteCount += 1;
+  console.log(json.name);
+  console.log(json.voteCount);
+
+};
+
+function addError(json) {
+  console.log('error')
+};
 
 
 

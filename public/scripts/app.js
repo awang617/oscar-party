@@ -1,5 +1,6 @@
 var $categoriesList;
 var allCategories = [];
+let categoryTitles = document.getElementsByClassName("category-title");
 
 $(document).ready(function(){
 
@@ -16,6 +17,7 @@ $(document).ready(function(){
   $('.ballot-form').on('submit', function(e) {
     e.preventDefault();
 
+    ///////////////  STORE USER CHOICES ////////////////
     // stores choices in a HTMLCollection
     let choices = document.getElementsByClassName("chosen");
     // create an empty array for choice ids
@@ -26,13 +28,12 @@ $(document).ready(function(){
       choiceIds.push(choices[i].getAttribute('data-id'));
     };
 
-    let categoryTitles = document.getElementsByClassName("category-title");
+    // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
     for (var i = 0; i < categoryTitles.length; i++) {
       let categoryKey = categoryTitles[i].getAttribute('data-target');
       // set key to cateogry name in order to store choice movie id with it
       sessionStorage.setItem(categoryKey, choiceIds[i]);
-    };
-
+    }; 
 
     // redirect to the ballot
     if (choiceIds.length < 24) {
@@ -46,6 +47,7 @@ $(document).ready(function(){
     // Add movie from user input forms
     // grabs userChoice forms
     let newMovies = document.getElementsByClassName("userChoice");
+    // set variable for data to send to database through AJAX call
     let newMovieNames = [];
 
     for (i = 0; i < newMovies.length; i++) {
@@ -53,7 +55,8 @@ $(document).ready(function(){
         // add new movie objects to array
         newMovieNames.push({
           name: newMovies[i].value,
-          categoryName: newMovies[i].getAttribute('data-category'),
+          // GET RID OF THIS
+          // categoryName: newMovies[i].getAttribute('data-category'),
           image: '',
           voteCount: 1,
           userSubmitted: true
@@ -63,26 +66,47 @@ $(document).ready(function(){
     console.log("newMovieNames", newMovieNames);
 
     // AJAX call to add movie to database
-    $.ajax({
-      method: "POST",
-      url: '/api/movie',
-      data: { newMovieNames },
-      success: function (response) {
-        console.log("success!! this is working");
-      },
-      error: function () {
-        console.log("error");
-      }
-    });
+    for (i=0; i < newMovieNames.length; i++){
+      $.ajax({
+        method: "POST",
+        url: '/api/movie',
+        data:  newMovieNames[i],
+        success: createSuccess,
+        error: function () {
+          console.log("error");
+        }
+      });
+    }
 
-    // when user creates a new movie,
-    // we need to know which category they created it in
-    // store that category name as a key in sessionStorage
-
-  });
+    /*
+    // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
+    for (var i = 0; i < categoryTitles.length; i++) {
+      let categoryOfUserSubmitKey = categoryTitles[i].textContent;
+    // set key to cateogry name in order to know which category user submitted movie is in
+      sessionStorage.setItem(categoryOfUserSubmitKey, newMovies[i].value);
+      console.log(sessionStorage);
+      debugger;
+    }; 
+    */
+  }); 
 
 });
+ 
+let newMovieIds = [];
 
+function createSuccess (response) {
+  console.log("success!! this is working");
+  console.log(response._id);
+  newMovieIds.push(response._id);
+  console.log(newMovieIds);
+
+  // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
+  for (var i = 0; i < categoryTitles.length; i++) {
+    let categoryOfUserSubmitKey = categoryTitles[i].textContent;
+  // set key to cateogry name in order to know which category user submitted movie is in
+    sessionStorage.setItem(categoryOfUserSubmitKey, newMovieIds[i]);
+  };
+};
 
 
 /////////////////////////////////////////////////
@@ -174,7 +198,6 @@ function render() {
     $(this).siblings().removeClass(' chosen');
     $(this).toggleClass(' chosen');
   });
-  ////////////////////
 };
 
 function handleSuccess(json) {

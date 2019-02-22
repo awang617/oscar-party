@@ -266,6 +266,7 @@ let movie_list = [
     image: 'images/free-solo.jpg',
     voteCount: 0,
     userSubmitted: false
+
   },
   {
     name: 'Hale County This Morning, This Evening',

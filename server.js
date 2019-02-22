@@ -108,7 +108,6 @@ app.get('/votes', function votecountPage(req, res) {
      });
  });
 
-
 // bogus post route used for testing the patch route
 // can deleted later if no longer needed
 //  app.post('/api/testrouteforpostman', (req, res) => {
@@ -125,18 +124,28 @@ app.get('/votes', function votecountPage(req, res) {
 
 //  Crud
  app.post('/api/movie', (req, res) => {
-    let userChoiceData = req.body.newMovieNames;
+    const newMovie = new db.Movie({
+        name: req.body.name,
+        voteCount: req.body.voteCount,
+        userSubmitted: req.body.userSubmitted,
+    });
+    newMovie.save((err, newMovie) => {
+        if (err) { console.log(err) }
+        res.json(newMovie);
+    });
+    // let userChoiceData = req.body.newMovieNames;
 
-    userChoiceData.forEach(choice => {
-        const newMovie = new db.Movie({
-            name: choice.name,
-            voteCount: choice.voteCount
-        });
-        newMovie.save((err, newMovie) => {
-            if (err) { console.log(err) }
-            res.json(newMovie);
-        });
-    })
+    // userChoiceData.forEach(choice => {
+    //     const newMovie = new db.Movie({
+    //         name: choice.name,
+    //         voteCount: choice.voteCount,
+    //         userSubmitted: choice.userSubmitted,
+    //     });
+    //     newMovie.save((err, newMovie) => {
+    //         if (err) { console.log(err) }
+    //         res.json(newMovie);
+    //     });
+    // });
  });
 
 //  crUd

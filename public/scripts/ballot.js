@@ -33,11 +33,6 @@ $(document).ready(function(){
   */
 });
 
-// on ballot page, grab the user created movie by key/value pair in sessionStorage
-// also on ballot page, we need to add HTML to display the user created movie with edit/delete buttons under the correct category
-// highlight user created movie (add class)
-
-
 
 /////////////////////////////////////////////////
 /////////  BALLOT PAGE FUNCTIONS  //////////////
@@ -98,21 +93,45 @@ function render() {
   $categoriesBallot.append(categoriesHtml);
 
   // highlight user's choices from landing page
-  // let choiceIds = [];
-  // selects category names
+  // selects category names on ballot page
   let categoryTitles = document.getElementsByClassName("category-title");
+  let userSubmittedFilms = [];
+
   for (var i = 0; i < categoryTitles.length; i++) {
     // making category keys the category names
     let categoryKey = categoryTitles[i].getAttribute('data-target');
-    console.log(categoryKey);
+    let categoryOfUserSubmitKey = categoryTitles[i].textContent;
     // stores choice IDs into variable
     var chosenId = sessionStorage.getItem(categoryKey);
-    // match the category key to the category on the page
-    // and grabbing its niece that matches the movie ID
+    // store user submitted movies names into variable
+    userSubmittedFilms.push(sessionStorage.getItem(categoryOfUserSubmitKey));
+    // grabbing the category on the page that matches the category key
+    // and grabbing its niece movie that matches the movie ID stored in sessionStorage
     var nominatedChoice = $(`[data-target="${categoryKey}"]`).siblings().children(`[data-id="${chosenId}"]`);
     // adding class chosen to all choices
     nominatedChoice.addClass('chosen');
   };
+
+  let movieNameSearch = sessionStorage.getItem(categoryOfUserSubmitKey).serialize();
+
+  // AJAX call to database to find user submitted movie to grab id
+  $.ajax({
+    method: "GET",
+    url: '/api/movie',
+    data: { movieName: movieNameSearch },
+    success: function (response) {
+      console.log("yay!");
+      console.log(response);
+    },
+    error: function () {
+      console.log("error retrieving movie");
+    }
+  });
+
+  // find the ID of the user created movie in the database
+  // also on ballot page, we need to add HTML to display the user created movie with edit/delete buttons under the correct category
+  // highlight user created movie (add class)
+
 
   // add event listeners if user wants to change choice
   $('.nominee').on('click', function(event) {

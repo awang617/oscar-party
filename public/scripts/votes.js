@@ -25,46 +25,29 @@ $(document).ready(function(){
 /////////  VOTES PAGE FUNCTIONS  //////////////
 /////////////////////////////////////////////////
 
-// iterates through movies array to get name and votecount and add to moviesArr as HTML code
-// function getMoviesHtml(movies) {
-//   // let moviesArr = [];
-//   for (let i = 0; i < movies.length; i++) {
-//     moviesArr.push(`${movies[i].name}`);
-//   };
-//   return moviesArr.join('');
-// };
-
-// function getMoviesHtml(movies) {
-//   return `<hr>
-//           <div id="moviesList">${movies.name} - ${movies.voteCount}</div>`; 
-// };
-
-
-// function getAllMoviesHtml(movies) {
-//   return movies.map(getMoviesHtml).join("");
-// }
-
-
-// puts HTML on page
-// function render() {
-//   $moviesList.empty();
-//   let moviesHtml = getAllMoviesHtml(allMovies);
-//   $moviesList.append(moviesHtml);
-// };
-
 function handleSuccess(json) {
   allMovies = json;
+
+  // set some empty arrays to use for the chart
   let labels = [];
   let data = [];
   
-  allMovies.sort(compare);
+  // filter only the nominated movies
+  var nominatedMovies = allMovies.filter(function(item) {
+    return item.userSubmitted === false;
+  });
+
+  // sort the movies by voteCount in descending order
+  nominatedMovies.sort(compare);
 
   // get the top ten voted for movies
+  // push the name and voteCount into the data and label arrays
   for(i=0; i < 10; i++) {
-    data.push(allMovies[i].voteCount);
-    labels.push(allMovies[i].name);
+    data.push(nominatedMovies[i].voteCount);
+    labels.push(nominatedMovies[i].name);
   };
 
+  // set up the bar graph
   var ctx = document.getElementById("myChart").getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -81,11 +64,14 @@ function handleSuccess(json) {
         }]
     },
   })
+
+  // filter all the movies that were user created
   var userChoice = allMovies.filter(function(item) {
     return item.userSubmitted === true;
   });
   console.log(userChoice);
 
+  // append the users' movies to the moviesTarget div
   for (i=0; i<userChoice.length; i++) {
     $('#moviesTarget').append(`<div id="moviesList">${userChoice[i].name}</div>`)
   }
@@ -94,6 +80,8 @@ function handleSuccess(json) {
   // render();
 }
 
+// function to compare values in an object of an array
+// found on https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 function compare(a,b) {
   if (a.voteCount > b.voteCount){
     return -1;

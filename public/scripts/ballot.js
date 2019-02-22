@@ -1,6 +1,13 @@
 var $categoriesBallot;
 var allCategories = [];
-var choices;
+// selects category names on ballot page
+let categoryTitles = document.getElementsByClassName("category-title");
+// sets emtpy array to store user created movies ids
+let userMovieIds = [];
+// empty array to user submitted movies JSON objects after receiving from AJAX call
+let userSubmitMovies = [];
+
+
 
 $(document).ready(function(){
 
@@ -13,28 +20,7 @@ $(document).ready(function(){
     error: handleError
   });
 
-  // $(document).on('click', '.delete', function () {
-  //   $(this).parent().remove();
-  // });
 
-  /*
-  // grabs stored choices from landing
-  choices = JSON.parse(sessionStorage.getItem('choices'))
-  console.log(choices)
-  // iterate through each choice
-  choices.forEach( movieId => {
-    // make movieId a string
-    movieId.replace(/['"]+/g, '')
-    console.log(movieId)
-    // AJAX PUT call to increase vote count of chosen movies
-    $.ajax({
-      method: "PUT",
-      url: `/api/movie/${movieId}`,
-      success: addSuccess,
-      error: addError
-    });
-  });
-  */
 });
 
 
@@ -52,10 +38,6 @@ function getCategoryHtml(category) {
             </div>
           </div>`;
 };
-
-//<input type="button" class="delete" value="Delete" />
-//add this into return statement after userChoice
-
 
 // Sets HTML of nominees
 function getMoviesList(category) {
@@ -94,6 +76,8 @@ function getAllCategoriesHtml(categories) {
   return categories.map(getCategoryHtml).join("");
 };
 
+let categoryOfUserSubmitKey = [];
+
 // puts HTML on the page
 function render() {
   $categoriesBallot.empty();
@@ -101,45 +85,23 @@ function render() {
   $categoriesBallot.append(categoriesHtml);
 
   // highlight user's choices from landing page
-  // selects category names on ballot page
-  let categoryTitles = document.getElementsByClassName("category-title");
-  let userSubmittedFilms = [];
-
   for (var i = 0; i < categoryTitles.length; i++) {
     // making category keys the category names
     let categoryKey = categoryTitles[i].getAttribute('data-target');
-    let categoryOfUserSubmitKey = categoryTitles[i].textContent;
+
+    categoryOfUserSubmitKey.push(categoryTitles[i].textContent);
+    // getting storage id values and saving into userMovieIds array
+    userMovieIds.push(sessionStorage.getItem(categoryOfUserSubmitKey));
+
     // stores choice IDs into variable
     var chosenId = sessionStorage.getItem(categoryKey);
-    // store user submitted movies names into variable
-    userSubmittedFilms.push(sessionStorage.getItem(categoryOfUserSubmitKey));
+
     // grabbing the category on the page that matches the category key
     // and grabbing its niece movie that matches the movie ID stored in sessionStorage
     var nominatedChoice = $(`[data-target="${categoryKey}"]`).siblings().children(`[data-id="${chosenId}"]`);
     // adding class chosen to all choices
     nominatedChoice.addClass('chosen');
   };
-
-  let movieNameSearch = sessionStorage.getItem(categoryOfUserSubmitKey).serialize();
-
-  // AJAX call to database to find user submitted movie to grab id
-  $.ajax({
-    method: "GET",
-    url: '/api/movie',
-    data: { movieName: movieNameSearch },
-    success: function (response) {
-      console.log("yay!");
-      console.log(response);
-    },
-    error: function () {
-      console.log("error retrieving movie");
-    }
-  });
-
-  // find the ID of the user created movie in the database
-  // also on ballot page, we need to add HTML to display the user created movie with edit/delete buttons under the correct category
-  // highlight user created movie (add class)
-
 
   // add event listeners if user wants to change choice
   $('.nominee').on('click', function(event) {
@@ -150,14 +112,48 @@ function render() {
   });
 };
 
+
+/////////////////////////////////////////////////
+/////////  USER SUBMITTED FUNCTIONS  ////////////
+/////////////////////////////////////////////////
+
+// ERROR ===============================================
+// =====================================================
+// =====================================================
+function renderUser() {
+  for (var i = 0; i < categoryTitles.length; i++) {
+    $(`h3:contains(${categoryOfUserSubmitKey})`).siblings('div').append(`<p>${userSubmitMovies[i].name}</p>`);
+  };
+};
+
 ////////////////////////////////////////////////////////////////////
 ///////////////  POPULATE PAGE AJAX FUNCTIONS  /////////////////////
 ////////////////////////////////////////////////////////////////////
 
+
 function handleSuccess(json) {
   allCategories = json;
   render();
+  // use user submitted movie IDs to find the movie name in the database
+  for (var i = 0; i < userMovieIds.length; i++) {
+    $.ajax({
+      method: 'GET',
+      url: `/api/movie/${userMovieIds[i]}`,
+      success: getUserMovieSuccess,
+      error: function () {
+        console.log("error grabbing user submitted movies");
+      },
+    });
+  };
 };
+
+function getUserMovieSuccess (response) {
+  console.log("success!");
+  userSubmitMovies.push(response);
+  console.log(userSubmitMovies);
+  renderUser();
+};
+
 
 function handleError(e) {
   console.log('uh oh');
@@ -174,17 +170,6 @@ function handleError(e) {
 ////////////////////////////////////////////////////////////////////
 //////////////  ADDING VOTE COUNT AJAX FUNCTIONS ///////////////////
 ////////////////////////////////////////////////////////////////////
-
-function addSuccess(json) {
-  json.voteCount += 1;
-  console.log(json.name);
-  console.log(json.voteCount);
-
-};
-
-function addError(json) {
-  console.log('error')
-};
 
 
 

@@ -11,6 +11,13 @@ $(document).ready(function(){
     error: handleError
   });
 
+  $('#new-ballot').click(function(e) {
+    document.location.href = '/'
+  })
+
+  $('#my-ballot').click(function(e) {
+    document.location.href = '/ballot'
+  })
 });
 
 
@@ -49,13 +56,6 @@ function handleSuccess(json) {
   allMovies = json;
   let labels = [];
   let data = [];
-  function compare(a,b) {
-    if (a.voteCount > b.voteCount){
-      return -1;
-    }if (a.voteCount < b.voteCount){
-      return 1;
-    } return 0;
-  }
   
   allMovies.sort(compare);
 
@@ -81,8 +81,25 @@ function handleSuccess(json) {
         }]
     },
   })
+  var userChoice = allMovies.filter(function(item) {
+    return item.userSubmitted === true;
+  });
+  console.log(userChoice);
 
+  for (i=0; i<userChoice.length; i++) {
+    $('#moviesTarget').append(`<div id="moviesList">${userChoice[i].name}</div>`)
+  }
+
+  console.log(data);
   // render();
+}
+
+function compare(a,b) {
+  if (a.voteCount > b.voteCount){
+    return -1;
+  }if (a.voteCount < b.voteCount){
+    return 1;
+  } return 0;
 }
 
 function handleError(e) {

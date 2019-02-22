@@ -53,8 +53,6 @@ $(document).ready(function(){
       document.location.href = '/ballot'
     // }
 
-
-
     // Add movie from user input forms
     // grabs userChoice forms
     let newMovies = document.getElementsByClassName("userChoice");

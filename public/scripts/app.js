@@ -26,6 +26,16 @@ $(document).ready(function(){
     for (var i = 0; i < choices.length; i++) {
       // get choices data-ids and pushes into choiceIds array
       choiceIds.push(choices[i].getAttribute('data-id'));
+      $.ajax({
+        method: 'PATCH',
+        url: `/api/movie/${choices[i].getAttribute('data-id')}`,
+        success: function(response) {
+          console.log('success!')
+        },
+        error: function(response) {
+          console.log('error!')
+        }
+      })
     };
 
     // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
@@ -121,8 +131,10 @@ function getCategoryHtml(category) {
             <hr>
             <button class="btn btn-link category-title" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
             <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
+
                   ${getMoviesList(category)}
                   <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">
+
             </div>
           </div>`;
 };

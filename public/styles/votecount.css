@@ -1,15 +1,9 @@
+/* TITLE BAR */
 h1 {
   margin-top: 20px;
   font-size: 46px;
   color: #B49B57;
   font-family: 'Petit Formal Script', cursive;
-  text-align: center;
-}
-
-h2 {
-  margin-top: 100px;
-  text-align: center;
-  font-family: cursive;
 }
 
 .title {
@@ -18,6 +12,21 @@ h2 {
   position: fixed;
   background-color: white;
   top: 0;
+}
+
+/* TEXT */
+
+h1, h2, h3, .moviesTarget {
+  text-align: center;
+}
+
+h2 {
+  margin-top: 100px;
+  font-family: cursive;
+}
+
+h3 {
+  font-family: cursive;
 }
 
 .moviesTarget {

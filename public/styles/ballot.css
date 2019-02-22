@@ -20,6 +20,10 @@ h1 {
 }
 
 /* TEXT */
+h1, h2, h3, p{
+  text-align: center;
+}
+
 h2 {
   margin-top: 100px;
   font-family: cursive;
@@ -30,15 +34,15 @@ h3 {
   color: #B49B57;
 }
 
-h3, h4 {
+h3, p{
   font-family: cursive;
 }
 
-h4 {
+p {
   font-size: 18px;
 }
 
-
+/* INSERTED CHOICES */
 #ballotTarget {
   display: flex;
   flex-wrap: wrap;
@@ -46,7 +50,6 @@ h4 {
 }
 
 .flex-item {
-  /* need to make responsive */
   width: 30vw;
 }
 
@@ -54,14 +57,11 @@ h4 {
   cursor: pointer;
 }
 
-h1, h2, h3, h4 {
-  text-align: center;
-}
-
 .chosen {
   border: solid black;
 }
 
+/* BUTTON */
 button {
   margin-top: 20px;
   background-color: black;

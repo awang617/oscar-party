@@ -99,7 +99,7 @@ app.get('/ballot', function ballotPage(req, res) {
 
 // bogus post route used for testing the patch route
 // can deleted later if no longer needed
-//  app.post('/api/testroute', (req, res) => {
+//  app.post('/api/testrouteforpostman', (req, res) => {
 //     const newMovie = new db.Movie({
 //         name: req.body.name,
 //         voteCount: req.body.voteCount,
@@ -131,7 +131,9 @@ app.get('/ballot', function ballotPage(req, res) {
     const movieId = req.params.id;
     db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
         if (err) {console.log(err)}
+        // make a variable for true false if the movie was user submitted
         let isUserSubmitted = foundMovie.userSubmitted;
+        // make a variable to set the new voteCount
         let plusOne = foundMovie.voteCount+1;
         if (isUserSubmitted) {
             db.Movie.findOneAndUpdate( {_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {

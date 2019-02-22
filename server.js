@@ -108,20 +108,6 @@ app.get('/votes', function votecountPage(req, res) {
      });
  });
 
-// bogus post route used for testing the patch route
-// can deleted later if no longer needed
-//  app.post('/api/testrouteforpostman', (req, res) => {
-//     const newMovie = new db.Movie({
-//         name: req.body.name,
-//         voteCount: req.body.voteCount,
-//         userSubmitted: req.body.userSubmitted
-//     });
-//     newMovie.save((err, newMovie) => {
-//         if (err) { console.log(err) }
-//         res.json(newMovie);
-//     });
-// });
-
 //  Crud
  app.post('/api/movie', (req, res) => {
     const newMovie = new db.Movie({
@@ -133,23 +119,9 @@ app.get('/votes', function votecountPage(req, res) {
         if (err) { console.log(err) }
         res.json(newMovie);
     });
-    // let userChoiceData = req.body.newMovieNames;
-
-    // userChoiceData.forEach(choice => {
-    //     const newMovie = new db.Movie({
-    //         name: choice.name,
-    //         voteCount: choice.voteCount,
-    //         userSubmitted: choice.userSubmitted,
-    //     });
-    //     newMovie.save((err, newMovie) => {
-    //         if (err) { console.log(err) }
-    //         res.json(newMovie);
-    //     });
-    // });
  });
 
 //  crUd
-//  may want to change this to patch
  app.patch('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
     db.Movie.findOne({_id: movieId}, (err, foundMovie) => {

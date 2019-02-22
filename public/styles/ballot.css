@@ -91,13 +91,7 @@ a:visited {
   text-decoration: none;
 }
 
-.deleteBtn{
-  color: #B49B57;
-  background-color: black;
-  border-radius: 12px;
-}
-
-.edit-movie-button {
+.deleteBtn, .edit-movie-submit-button, .edit-movie-button {
   color: #B49B57;
   background-color: black;
   border-radius: 12px;

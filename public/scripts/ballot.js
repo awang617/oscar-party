@@ -6,7 +6,7 @@ let categoryTitles = document.getElementsByClassName("category-title");
 let userMovieIds = [];
 // empty array to user submitted movies JSON objects after receiving from AJAX call
 let userSubmitMovies = [];
-
+let counter = 0;
 
 
 $(document).ready(function(){
@@ -86,12 +86,14 @@ function render() {
 
   // highlight user's choices from landing page
   for (var i = 0; i < categoryTitles.length; i++) {
+    
     // making category keys the category names
     let categoryKey = categoryTitles[i].getAttribute('data-target');
 
     categoryOfUserSubmitKey.push(categoryTitles[i].textContent);
+    // console.log(i, categoryOfUserSubmitKey);
     // getting storage id values and saving into userMovieIds array
-    userMovieIds.push(sessionStorage.getItem(categoryOfUserSubmitKey));
+    userMovieIds.push(sessionStorage.getItem(categoryOfUserSubmitKey[i]));
 
     // stores choice IDs into variable
     var chosenId = sessionStorage.getItem(categoryKey);
@@ -120,10 +122,16 @@ function render() {
 // ERROR ===============================================
 // =====================================================
 // =====================================================
-function renderUser() {
-  for (var i = 0; i < categoryTitles.length; i++) {
-    $(`h3:contains(${categoryOfUserSubmitKey})`).siblings('div').append(`<p>${userSubmitMovies[i].name}</p>`);
-  };
+function renderUser(userSubmitMovies) {
+  console.log(userSubmitMovies);
+  for(let i=0; i<categoryOfUserSubmitKey.length;i++){
+    for(let j=0; j<userSubmitMovies.length;j++){
+      if(sessionStorage.getItem(categoryOfUserSubmitKey[i]) == userSubmitMovies[j]._id){
+        console.log(categoryOfUserSubmitKey[i], userSubmitMovies[j]._id);
+        $(`h3:contains(${categoryOfUserSubmitKey[i]})`).siblings('div').append(`<p>${userSubmitMovies[j].name}</p>`);
+      }
+    }
+  }
 };
 
 ////////////////////////////////////////////////////////////////////
@@ -135,24 +143,36 @@ function handleSuccess(json) {
   allCategories = json;
   render();
   // use user submitted movie IDs to find the movie name in the database
+  //  console.log(userMovieIds);
   for (var i = 0; i < userMovieIds.length; i++) {
-    $.ajax({
-      method: 'GET',
-      url: `/api/movie/${userMovieIds[i]}`,
-      success: getUserMovieSuccess,
-      error: function () {
-        console.log("error grabbing user submitted movies");
-      },
-    });
+    if(userMovieIds[i] && userMovieIds[i]!="undefined"){
+      counter++;
+      $.ajax({
+        method: 'GET',
+        url: `/api/movie/${userMovieIds[i]}`,
+        // async: false,
+        success: getUserMovieSuccess,
+        error: function (error) {
+          console.log(error);
+          console.log("error grabbing user submitted movies");
+        },
+      });
+    };
   };
 };
 
 function getUserMovieSuccess (response) {
-  console.log("success!");
+  // console.log("success!");
   userSubmitMovies.push(response);
-  console.log(userSubmitMovies);
-  renderUser();
+  // console.log(userSubmitMovies);
+  console.log(userSubmitMovies.length,counter);
+  if(userSubmitMovies.length==counter){
+    renderUser(userSubmitMovies);
+  }
+  // renderUser(userSubmitMovies);
 };
+
+
 
 
 function handleError(e) {

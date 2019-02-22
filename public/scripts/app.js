@@ -35,20 +35,21 @@ $(document).ready(function(){
       sessionStorage.setItem(categoryKey, choiceIds[i]);
     }; 
 
-    /*
-    ///////////////  REDIRECT TO BALLOT  //////////////////
+    // redirect to the ballot
     if (choiceIds.length < 24) {
       alert('You must choose a movie for each category.')
     } else {
       document.location.href = '/ballot'
-    } */
-    
-    /////////////  ADD USER SUBMITTED MOVIE TO DATABASE /////////////
+    }
+
+
+
+    // Add movie from user input forms
     // grabs userChoice forms
     let newMovies = document.getElementsByClassName("userChoice");
     // set variable for data to send to database through AJAX call
     let newMovieNames = [];
-  
+
     for (i = 0; i < newMovies.length; i++) {
       if (newMovies[i].value !== "") {
         // add new movie objects to array
@@ -58,7 +59,7 @@ $(document).ready(function(){
           // categoryName: newMovies[i].getAttribute('data-category'),
           image: '',
           voteCount: 1,
-          userSubmitted: true,
+          userSubmitted: true
         });
       };
     };
@@ -187,7 +188,7 @@ function getAllCategoriesHtml(categories) {
 
 function render() {
   $categoriesList.empty();
-  
+
   let categoriesHtml = getAllCategoriesHtml(allCategories);
   $categoriesList.append(categoriesHtml);
   // add event listeners

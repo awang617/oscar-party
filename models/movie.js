@@ -10,7 +10,7 @@ const MovieSchema = new Schema ({
   supportingActor: String,
   supportingActress: [String],
   voteCount: Number,
-  userSubmitted: Boolean,
+  userSubmitted: Boolean
 });
 
 const Movie = mongoose.model('Movie', MovieSchema);

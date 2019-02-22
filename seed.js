@@ -4,7 +4,7 @@
 const db = require ('./models');
 
 // categories
-export const category_list = [
+const category_list = [
   {
     name: 'Best Picture',
     movies: ['Black Panther', 'BlacKkKlansman', 'Bohemian Rhapsody', 'The Favourite', 'Green Book', 'Roma', 'A Star Is Born', 'Vice']
@@ -109,7 +109,7 @@ let movie_list = [
     name: 'Black Panther',
     image: 'images/black-panther.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'BlacKkKlansman',
@@ -117,14 +117,14 @@ let movie_list = [
     supportingActor: 'Adam Driver',
     director: 'Spike Lee',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Bohemian Rhapsody',
     image: 'images/bohemian-rhapsody.jpg',
     actor: 'Rami Malek',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'The Favourite',
@@ -133,7 +133,7 @@ let movie_list = [
     supportingActress: ['Emma Stone', 'Rachel Weisz'],
     director: 'Yorgos Lanthimos',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Green Book',
@@ -141,7 +141,7 @@ let movie_list = [
     actor: 'Viggo Mortensen',
     supportingActor: 'Mahershala Ali',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Roma',
@@ -150,7 +150,7 @@ let movie_list = [
     supportingActress: ['Marina de Tavira'],
     director: 'Alfonso Cuaron',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'A Star Is Born',
@@ -159,7 +159,7 @@ let movie_list = [
     actress: 'Lady Gaga',
     supportingActor: 'Sam Elliott',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Vice',
@@ -169,21 +169,21 @@ let movie_list = [
     supportingActress: ['Amy Adams'],
     director: 'Adam McKay',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: "At Eternity's Gate",
     image: 'images/at-eternitys-gate.jpg',
     actor: 'Willem Dafoe',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'The Wife',
     image: 'images/the-wife.jpg',
     actress: 'Glenn Close',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Can You Ever Forgive Me?',
@@ -191,255 +191,256 @@ let movie_list = [
     actress: 'Melissa McCarthy',
     supportingActor: 'Richard E. Grant',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'If Beale Street Could Talk',
     image: 'images/if-beale-street-could-talk.jpg',
     supportingActress: ['Regina King'],
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Incredibles 2',
     image: 'images/incredibles-2.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Isle of Dogs',
     image: 'images/isle-of-dogs.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Mirai',
     image: 'images/mirai.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Ralph Breaks the Internet',
     image: 'images/ralph-breaks-the-internet.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Spider-Man: Into the Spider-verse',
     image: 'images/spider-man.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Cold War',
     image: 'images/cold-war.jpg',
     director: 'Pawel Pawlikowski',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Never Look Away',
     image: 'images/never-look-away.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'The Ballad of Buster Scruggs',
     image: 'images/the-ballad-of-buster-scruggs.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Mary Poppins Returns',
     image: 'images/mary-poppins-returns.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Mary Queen of Scots',
     image: 'images/mary-queen-of-scots.png',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Free Solo',
     image: 'images/free-solo.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
+
   },
   {
     name: 'Hale County This Morning, This Evening',
     image: 'images/hale-county-this-morning-this-evening.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Minding the Gap',
     image: 'images/minding-the-gap.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Of Fathers and Sons',
     image: 'images/of-fathers-and-sons.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'RBG',
     image: 'images/rbg.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Black Sheep',
     image: 'images/black-sheep.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'End Game',
     image: 'images/end-game.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Lifeboat',
     image: 'images/lifeboat.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'A Night at The Garden',
     image: 'images/a-night-at-the-garden.jpeg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Period. End of Sentence.',
     image: 'images/period-end-of-sentence.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Capernaum',
     image: 'images/capernaum.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Shoplifters',
     image: 'images/shoplifters.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Border',
     image: 'images/border.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'First Man',
     image: 'images/first-man.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Animal Behaviour',
     image: 'images/animal-behaviour.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Bao',
     image: 'images/bao.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Late Afternoon',
     image: 'images/late-afternoon.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'One Small Step',
     image: 'images/one-small-step.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Weekends',
     image: 'images/weekends.png',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Detainment',
     image: 'images/detainment.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Fauve',
     image: 'images/fauve.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Marguerite',
     image: 'images/marguerite.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Mother',
     image: 'images/mother.jpeg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Skin',
     image: 'images/skin.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'A Quiet Place',
     image: 'images/a-quiet-place.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Avengers: Infinity War',
     image: 'images/avengers-infinity-war.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Christopher Robin',
     image: 'images/christopher-robin.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Ready Player One',
     image: 'images/ready-player-one.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'Solo: A Star Wars Story',
     image: 'images/solo-a-star-wars-story.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
   {
     name: 'First Reformed',
     image: 'images/first-reformed.jpg',
     voteCount: 0,
-    userSubmitted: false,
+    userSubmitted: false
   },
 ];
 

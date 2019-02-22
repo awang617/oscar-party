@@ -177,6 +177,7 @@ function renderUser(userSubmitMovies) {
 function deleteSuccess (json) {
   var movie = json;
   movieId = movie._id;
+  debugger;
   $(`[data-id="${movie._id}"]`).parent().remove();
 };
 

@@ -3,7 +3,7 @@ var allCategories = [];
 var choices;
 
 $(document).ready(function(){
-  
+
   // Populate ballot page with all nominees
   $categoriesBallot = $('#ballotTarget');
   $.ajax({
@@ -12,6 +12,10 @@ $(document).ready(function(){
     success: handleSuccess,
     error: handleError
   });
+
+  // $(document).on('click', '.delete', function () {
+  //   $(this).parent().remove();
+  // });
 
   /*
   // grabs stored choices from landing
@@ -48,6 +52,10 @@ function getCategoryHtml(category) {
             </div>
           </div>`;
 };
+
+//<input type="button" class="delete" value="Delete" />
+//add this into return statement after userChoice
+
 
 // Sets HTML of nominees
 function getMoviesList(category) {

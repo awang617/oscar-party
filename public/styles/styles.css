@@ -1,11 +1,18 @@
 /* styles */
+body{
+  box-sizing: border-box;
+  margin: 0 100px;
+}
+
 .category {
   display: flex;
   flex-wrap: wrap;
 }
 
 img {
+  position: block;
   width: 20vw;
+  margin: auto;
 }
 
 .nominee {
@@ -23,14 +30,30 @@ h1, h2, h3, h4 {
 }
 
 .chosen {
-  background-color: red;
+  /* background-color: red; */
+  border: solid black;
 }
 
-input[type="text"] {
+input[type="submit"] {
   display: block;
-  width: 100%;
-  margin-left: 40px;
-  margin-right: 40px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.userChoice {
+  display: block;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.btn {
   text-align: center;
 }

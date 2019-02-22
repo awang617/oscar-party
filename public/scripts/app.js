@@ -95,8 +95,8 @@ function getCategoryHtml(category) {
             <hr>
             <button class="btn btn-link category-title" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
             <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
-                ${getMoviesList(category)}
-                <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">
+                  ${getMoviesList(category)}
+                  <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">
             </div>
           </div>`;
 };
@@ -107,48 +107,48 @@ function getMoviesList(category) {
     switch(category.name) {
       case "Actor in a Leading Role":
         moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                          <h4>${category.movies[i].actor} - ${category.movies[i].name}</h4>
+                          <h5>${category.movies[i].actor}<br>${category.movies[i].name}</h5>
                           <img src="${category.movies[i].image}">
                         </div>`);
         break;
       case "Actress in a Leading Role":
         moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                          <h4>${category.movies[i].actress} - ${category.movies[i].name}</h4>
+                          <h5>${category.movies[i].actress}<br>${category.movies[i].name}</h5>
                           <img src="${category.movies[i].image}">
                         </div>`);
         break;
       case "Actor in a Supporting Role":
         moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                          <h4>${category.movies[i].supportingActor} - ${category.movies[i].name}</h4>
+                          <h5>${category.movies[i].supportingActor}<br>${category.movies[i].name}</h5>
                           <img src="${category.movies[i].image}">
                         </div>`);
         break;
       case "Actress in a Supporting Role":
         if ( category.movies[i].supportingActress.length > 1 ) {
           moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                            <h4>${category.movies[i].supportingActress[0]} - ${category.movies[i].name}</h4>
+                            <h5>${category.movies[i].supportingActress[0]}<br>${category.movies[i].name}</h5>
                             <img src="${category.movies[i].image}">
                           </div>
                           <div class="nominee" data-id="${category.movies[i]._id}">
-                            <h4>${category.movies[i].supportingActress[1]} - ${category.movies[i].name}</h4>
+                            <h5>${category.movies[i].supportingActress[1]}<br>${category.movies[i].name}</h5>
                             <img src="${category.movies[i].image}">
                           </div>`);
         } else {
             moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                              <h4>${category.movies[i].supportingActress} - ${category.movies[i].name}</h4>
+                              <h5>${category.movies[i].supportingActress}<br>${category.movies[i].name}</h5>
                               <img src="${category.movies[i].image}">
                             </div>`);
         }
         break;
       case "Directing":
         moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                          <h4>${category.movies[i].director} - ${category.movies[i].name}</h4>
+                          <h5>${category.movies[i].director}<br>${category.movies[i].name}</h5>
                           <img src="${category.movies[i].image}">
                         </div>`);
         break;
       default:
         moviesArr.push(`<div class="nominee" data-id="${category.movies[i]._id}">
-                          <h4>${category.movies[i].name}</h4>
+                          <h5>${category.movies[i].name}</h5>
                           <img src="${category.movies[i].image}">
                         </div>`);
     };

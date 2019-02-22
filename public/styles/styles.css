@@ -1,29 +1,33 @@
-/* TITLE BAR */
-h1 {
-  margin-top: 20px;
-  font-size: 46px;
-  color: #B49B57;
-  font-family: 'Petit Formal Script', cursive;
-}
+/* body {
+   background-color: #770511;
+} */
 
-.title {
-  height: 100px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-}
+/* TITLE BAR */
 
 /* HEADER */
 header {
   /* background-repeat: round; */
   background-attachment: fixed;
-  height: 650px;
-  background-image: url("https://images.unsplash.com/photo-1536000999382-52cecfca7fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
+  height: 85vh;
+  background-image: url("https://i.etsystatic.com/13246776/r/il/253774/1245292475/il_fullxfull.1245292475_l2jd.jpg");
+  background-size: cover;
+  /* background-image: url("https://images.unsplash.com/photo-1536000999382-52cecfca7fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 46px;
+  color: white;
+  margin: auto;
+  padding-top: 30vh;
+  text-align: center;
+  font-size: 60px;
+  /* color: #B49B57; */
+  font-family: 'Petit Formal Script', cursive;
 }
 
 h2 {
-  margin-top: 20px;
-  background-color: white;
+  margin: 30px 0;
   font-family: 'Petit Formal Script', cursive;
   top: 90%;
 }
@@ -67,7 +71,7 @@ img {
   cursor: pointer;
 }
 
-h1, h2, h3, h5 {
+h2, h3, h5 {
   text-align: center;
   color: #B49B57;
 }

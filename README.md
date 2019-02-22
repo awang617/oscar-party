@@ -1,1 +1,1 @@
-# oscar-party
+# Welcome to the Oscar Party!

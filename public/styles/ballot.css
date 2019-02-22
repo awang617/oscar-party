@@ -82,10 +82,18 @@ button {
   text-decoration: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }
 
-a button:hover {
-  cursor: pointer;
+a:visited {
+  color: #B49B57;
+}
+
+.deleteBtn{
+  display: inline;
 }

@@ -4,15 +4,23 @@
   margin: 0 100px;
 } */
 
+/* body {
+  background-color: black;
+} */
+
 .category {
   display: flex;
   flex-wrap: wrap;
 }
 
 img {
-  position: block;
-  width: 20vw;
   margin: auto;
+  width: 10%;
+  padding: 10px;
+  height: 196.8px;
+  width: 148px;
+  /* height: 492px;
+  width: 370px; */
 }
 
 .nominee {
@@ -25,11 +33,36 @@ img {
   cursor: pointer;
 }
 
-h1, h2, h3, h4 {
+h1 {
+  width: 100%;
+  font-size: 46px;
+  color: #B49B57;
+  font-family: 'Petit Formal Script', cursive;
+  position: fixed;
+  background-color: white;
+}
+
+h2 {
+  margin-top: 20px;
+  background-color: white;
+  font-family: 'Petit Formal Script', cursive;
+  top: 90%;
+}
+
+h1, h2, h3, h5 {
+  text-align: center;
+  color: #B49B57;
+}
+
+div.nominee h5 {
   text-align: center;
 }
 
-.chosen {
+h4, .h4{
+  font-size: 1em;
+}
+
+.chosen img {
   /* background-color: red; */
   border: solid black;
 }
@@ -45,15 +78,29 @@ input[type="submit"] {
 }
 
 .userChoice {
-  display: block;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.btn {
+button.btn.btn-link.category-title {
   text-align: center;
+  text-decoration: none;
+  color: #B49B57;;
+  font-size: 24px;
+  font-family: 'Petit Formal Script', cursive;
+}
+
+.accordion {
+  text-align: center;
+}
+
+header {
+  /* background-repeat: round; */
+  background-attachment: fixed;
+  height: 650px;
+  background-image: url("https://images.unsplash.com/photo-1536000999382-52cecfca7fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
 }

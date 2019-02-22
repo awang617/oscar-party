@@ -77,9 +77,9 @@ app.get('/votes', function votecountPage(req, res) {
  app.get('/api/category', (req, res) => {
      db.Category.find().populate('movies').exec((err, foundCategories) => {
          if (err) {console.log(err)}
-         res.json(foundCategories);
-     });
- });
+         res.json(foundCategories)
+     })
+});
 
 //  cRud
  app.get('/api/category/:id', (req, res) => {
@@ -108,6 +108,21 @@ app.get('/votes', function votecountPage(req, res) {
      });
  });
 
+
+// bogus post route used for testing the patch route
+// can deleted later if no longer needed
+//  app.post('/api/testrouteforpostman', (req, res) => {
+//     const newMovie = new db.Movie({
+//         name: req.body.name,
+//         voteCount: req.body.voteCount,
+//         userSubmitted: req.body.userSubmitted
+//     });
+//     newMovie.save((err, newMovie) => {
+//         if (err) { console.log(err) }
+//         res.json(newMovie);
+//     });
+// });
+
 //  Crud
  app.post('/api/movie', (req, res) => {
     let userChoiceData = req.body.newMovieNames;
@@ -126,13 +141,26 @@ app.get('/votes', function votecountPage(req, res) {
 
 //  crUd
 //  may want to change this to patch
- app.put('/api/movie/:id', (req, res) => {
+ app.patch('/api/movie/:id', (req, res) => {
     const movieId = req.params.id;
-
-    db.Movie.findOneAndUpdate({_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
-        if (err) {console.log(err)};
-        res.json(updatedMovie);
-    });
+    db.Movie.findOne({_id: movieId}, (err, foundMovie) => {
+        if (err) {console.log(err)}
+        // make a variable for true false if the movie was user submitted
+        let isUserSubmitted = foundMovie.userSubmitted;
+        // make a variable to set the new voteCount
+        let plusOne = foundMovie.voteCount+1;
+        if (isUserSubmitted) {
+            db.Movie.findOneAndUpdate( {_id: movieId}, req.body, {new: true}, (err, updatedMovie) => {
+                if (err) {console.log(err)}
+                res.json(updatedMovie);
+            })
+        } else {
+            db.Movie.findOneAndUpdate( {_id: movieId}, {voteCount: plusOne}, {new: true}, (err, updatedMovie) => {
+                if (err) {console.log(err)}
+                res.json(updatedMovie);
+            })
+        }
+    })
  });
 
 //  cruD

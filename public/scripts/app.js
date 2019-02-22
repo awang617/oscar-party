@@ -42,6 +42,7 @@ $(document).ready(function(){
     }
 
 
+
     // Add movie from user input forms
     // grabs userChoice forms
     let newMovies = document.getElementsByClassName("userChoice");
@@ -54,7 +55,8 @@ $(document).ready(function(){
           name: newMovies[i].value,
           categoryName: newMovies[i].getAttribute('data-category'),
           image: '',
-          voteCount: 1
+          voteCount: 1,
+          userSubmitted: true
         });
       };
     };

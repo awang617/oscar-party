@@ -45,13 +45,13 @@ $(document).ready(function(){
       sessionStorage.setItem(categoryKey, choiceIds[i]);
     };
 
-    /*
+    
     // redirect to the ballot
     if (choiceIds.length < 24) {
       alert('You must choose a movie for each category.')
-    } else { */
+    } else { 
       document.location.href = '/ballot'
-    // }
+    }
 
     // Add movie from user input forms
     // grabs userChoice forms

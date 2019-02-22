@@ -94,7 +94,7 @@ function getCategoryHtml(category) {
   return `<div class="accordion" id="accordionExample">
             <hr>
             <button class="btn btn-link category-title" data-toggle="collapse" data-target="#${categoryNoSpaces}">${category.name}</button>
-            <div id="${categoryNoSpaces}" data-parent="#accordionExample">
+            <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
                 ${getMoviesList(category)}
                 <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">
             </div>

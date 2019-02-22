@@ -6,7 +6,7 @@ $(document).ready(function(){
   // $moviesList = $('#moviesTarget');
   $.ajax({
     method: 'GET',
-    url: '/api/category',
+    url: '/api/movie',
     success: handleSuccess,
     error: handleError
   });
@@ -21,12 +21,8 @@ $(document).ready(function(){
 // iterates through movies array to get name and votecount and add to moviesArr as HTML code
 // function getMoviesHtml(movies) {
 //   // let moviesArr = [];
-//   let labels = [];
-//   let data = [];
 //   for (let i = 0; i < movies.length; i++) {
-//     labels.push(`${movies[i].name}`);
-//     data.push(`${movies.voteCount}`)
-
+//     moviesArr.push(`${movies[i].name}`);
 //   };
 //   return moviesArr.join('');
 // };
@@ -41,48 +37,34 @@ $(document).ready(function(){
 //   return movies.map(getMoviesHtml).join("");
 // }
 
+
 // puts HTML on page
 // function render() {
 //   $moviesList.empty();
-
-//   let labels = [];
-//   let data = [];
-//   for (let i = 0; i < movies.length; i++) {
-//     .push(`${movies[i].name}`);
-//     data.push(`${movies.voteCount}`)
-
-//   };
-
-//   var ctx = document.getElementById("myChart").getContext('2d');
-//   var chart = new Chart(ctx, {
-//     // The type of chart we want to create
-//     type: 'horizontalBar',
-
-//     // The data for our dataset
-//     data: {
-//         labels: labels,
-//         datasets: [{
-//             label: "My First dataset",
-//             backgroundColor: 'rgb(255, 99, 132)',
-//             borderColor: 'rgb(255, 99, 132)',
-//             data: data,
-//         }]
-//     },
-//   })
-//   // let moviesHtml = getAllMoviesHtml(allMovies);
-//   // $moviesList.append(moviesHtml);
+//   let moviesHtml = getAllMoviesHtml(allMovies);
+//   $moviesList.append(moviesHtml);
 // };
 
 function handleSuccess(json) {
-  allCategories = json;
-  debugger;
+  allMovies = json;
   let labels = [];
   let data = [];
-  for (let i = 0; i < allCategories[0].movies.length; i++) {
-    labels.push(`${allCategories[0].movies[i].name}`);
-    data.push(`${allCategories[0].movies[i].voteCount}`)
-    
+  function compare(a,b) {
+    if (a.voteCount > b.voteCount){
+      return -1;
+    }if (a.voteCount < b.voteCount){
+      return 1;
+    } return 0;
+  }
+  
+  allMovies.sort(compare);
+
+  // get the top ten voted for movies
+  for(i=0; i < 10; i++) {
+    data.push(allMovies[i].voteCount);
+    labels.push(allMovies[i].name);
   };
+
   var ctx = document.getElementById("myChart").getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -92,9 +74,9 @@ function handleSuccess(json) {
     data: {
         labels: labels,
         datasets: [{
-            label: `${allCategories[0].name}`,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            label: 'Top Voted On Movies',
+            backgroundColor: '#B49B57',
+            borderColor: '#B49B57',
             data: data,
         }]
     },

@@ -24,8 +24,12 @@ We started by drawing out wireframes to visually see what content we wanted on t
 ![](reference/wireframe-landing.png)
 ![](reference/wireframe-ballot.png)
 ![](reference/wireframe-vote.png)
+![](reference/whiteboards1.jpg)
+![](reference/whiteboards2.jpg)
+![](reference/whiteboards3.jpg)
+![](reference/whiteboards4.jpg)
 
-We created our folder structure, built basic HTML pages, created seed data, server routes, and models JavaScript files.  Then we worked on the JavaScript functionality to populate the landing page with our seed data and click functions to choose a movie, submit choices and user submitted movies and store all of them to memory.
+We created our folder structure, built basic HTML pages, created seed data, server routes, models and JavaScript files.  Then we worked on the JavaScript functionality to populate the landing page with our seed data and click functions to choose a movie, submit choices and user submitted movies and store all of them to memory.
 
 Once we were able to accomplish those things, we advanced to the ballot page.  We worked on grabbing the stored choices and reflecting those amongst the nominations.  We struggled with getting the user submitted movies on the page, and while we continued to try to solve that, we worked on increasing a property of vote count for each movie when it is clicked on.
 

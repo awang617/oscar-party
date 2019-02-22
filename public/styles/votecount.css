@@ -6,6 +6,10 @@ h1 {
   font-family: 'Petit Formal Script', cursive;
 }
 
+h1 a {
+  color: #B49B57;
+}
+
 .title {
   height: 100px;
   width: 100%;

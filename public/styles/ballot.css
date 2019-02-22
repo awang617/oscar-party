@@ -2,11 +2,26 @@ body {
   box-sizing: border-box;
 }
 
+/* TITLE BAR */
 h1 {
   margin-top: 20px;
   font-size: 46px;
   color: #B49B57;
   font-family: 'Petit Formal Script', cursive;
+}
+
+.title {
+  top: 0;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 100;
+}
+
+/* TEXT */
+h1, h2, h3, p{
+  text-align: center;
 }
 
 h2 {
@@ -19,23 +34,15 @@ h3 {
   color: #B49B57;
 }
 
-h3, h4 {
+h3, p{
   font-family: cursive;
 }
 
-h4 {
+p {
   font-size: 18px;
 }
 
-.title {
-  top: 0;
-  height: 100px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  z-index: 100;
-}
-
+/* INSERTED CHOICES */
 #ballotTarget {
   display: flex;
   flex-wrap: wrap;
@@ -43,7 +50,6 @@ h4 {
 }
 
 .flex-item {
-  /* need to make responsive */
   width: 30vw;
 }
 
@@ -51,14 +57,11 @@ h4 {
   cursor: pointer;
 }
 
-h1, h2, h3, h4 {
-  text-align: center;
-}
-
 .chosen {
   border: solid black;
 }
 
+/* BUTTON */
 button {
   margin-top: 20px;
   background-color: black;
@@ -79,10 +82,18 @@ button {
   text-decoration: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }
 
-a button:hover {
-  cursor: pointer;
+a:visited {
+  color: #B49B57;
+}
+
+.deleteBtn{
+  display: inline;
 }

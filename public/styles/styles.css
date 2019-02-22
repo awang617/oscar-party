@@ -1,38 +1,4 @@
-/* styles */
-/* body{
-  box-sizing: border-box;
-  margin: 0 100px;
-} */
-
-/* body {
-  background-color: black;
-} */
-
-.category {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-img {
-  margin: auto;
-  width: 10%;
-  padding: 10px;
-  height: 196.8px;
-  width: 148px;
-  /* height: 492px;
-  width: 370px; */
-}
-
-.nominee {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-}
-
-.nominee:hover {
-  cursor: pointer;
-}
-
+/* TITLE BAR */
 h1 {
   margin-top: 20px;
   font-size: 46px;
@@ -47,11 +13,58 @@ h1 {
   background-color: white;
 }
 
+/* HEADER */
+header {
+  /* background-repeat: round; */
+  background-attachment: fixed;
+  height: 650px;
+  background-image: url("https://images.unsplash.com/photo-1536000999382-52cecfca7fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
+}
+
 h2 {
   margin-top: 20px;
   background-color: white;
   font-family: 'Petit Formal Script', cursive;
   top: 90%;
+}
+
+/* CATEGORIES */
+button.btn.btn-link.category-title {
+  text-align: center;
+  text-decoration: none;
+  color: #B49B57;;
+  font-size: 24px;
+  font-family: 'Petit Formal Script', cursive;
+}
+
+.accordion {
+  text-align: center;
+}
+
+.category {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+img {
+  margin: auto;
+  width: 10%;
+  padding: 10px;
+  height: 196.8px;
+  width: 148px;
+  /* height: 492px; ACTUAL HEIGHT
+  width: 370px; ACTUAL WIDTH*/
+}
+
+/* NOMINEES */
+.nominee {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.nominee:hover {
+  cursor: pointer;
 }
 
 h1, h2, h3, h5 {
@@ -66,7 +79,6 @@ div.nominee h5 {
 }
 
 .chosen img {
-  /* background-color: red; */
   border: solid black;
 }
 
@@ -79,25 +91,7 @@ div.nominee h5 {
   text-align: center;
 }
 
-button.btn.btn-link.category-title {
-  text-align: center;
-  text-decoration: none;
-  color: #B49B57;;
-  font-size: 24px;
-  font-family: 'Petit Formal Script', cursive;
-}
-
-.accordion {
-  text-align: center;
-}
-
-header {
-  /* background-repeat: round; */
-  background-attachment: fixed;
-  height: 650px;
-  background-image: url("https://images.unsplash.com/photo-1536000999382-52cecfca7fb1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
-}
-
+/* SUBMIT BUTTON */
 input[type="submit"] {
   margin-top: 20px;
   background-color: black;

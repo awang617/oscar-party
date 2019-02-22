@@ -43,7 +43,7 @@ $(document).ready(function(){
       let categoryKey = categoryTitles[i].getAttribute('data-target');
       // set key to cateogry name in order to store choice movie id with it
       sessionStorage.setItem(categoryKey, choiceIds[i]);
-    }; 
+    };
 
     /*
     // redirect to the ballot
@@ -83,7 +83,7 @@ $(document).ready(function(){
         }
       });
     };
-  }); 
+  });
 
 });
 
@@ -120,7 +120,7 @@ function getCategoryHtml(category) {
             <div id="${categoryNoSpaces}" class="collapse category" data-parent="#accordionExample">
 
                   ${getMoviesList(category)}
-                  <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have won?">
+                  <input name="userChoice" type="text" data-category="${category.name}" class="userChoice" placeholder="What should have been nominated?">
 
             </div>
           </div>`;

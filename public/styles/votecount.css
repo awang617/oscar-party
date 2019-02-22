@@ -6,6 +6,10 @@ h1 {
   font-family: 'Petit Formal Script', cursive;
 }
 
+h1 a {
+  color: #B49B57;
+}
+
 .title {
   height: 100px;
   width: 100%;
@@ -16,7 +20,7 @@ h1 {
 
 /* TEXT */
 
-h1, h2, h3, .moviesTarget {
+h1, h2, h3, #moviesList {
   text-align: center;
 }
 
@@ -27,11 +31,12 @@ h2 {
 
 h3 {
   font-family: cursive;
+  font-size: 24px;
 }
 
-.moviesTarget {
+#moviesList {
   font-family: cursive;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 /* BUTTON */

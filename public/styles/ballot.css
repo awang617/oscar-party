@@ -2,6 +2,40 @@ body {
   box-sizing: border-box;
 }
 
+h1 {
+  margin-top: 20px;
+  font-size: 46px;
+  color: #B49B57;
+  font-family: 'Petit Formal Script', cursive;
+}
+
+h2 {
+  margin-top: 100px;
+  font-family: cursive;
+}
+
+h3 {
+  font-size: 22px;
+  color: #B49B57;
+}
+
+h3, h4 {
+  font-family: cursive;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+.title {
+  top: 0;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 100;
+}
+
 #ballotTarget {
   display: flex;
   flex-wrap: wrap;
@@ -22,5 +56,33 @@ h1, h2, h3, h4 {
 }
 
 .chosen {
-  background-color: red;
+  border: solid black;
+}
+
+button {
+  margin-top: 20px;
+  background-color: black;
+  border: none;
+  color: #B49B57;
+  font-size: 1em;
+  padding: 10px 50px;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-family: cursive;
+  display: block;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a button:hover {
+  cursor: pointer;
 }

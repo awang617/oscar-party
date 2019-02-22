@@ -35,12 +35,13 @@ $(document).ready(function(){
       sessionStorage.setItem(categoryKey, choiceIds[i]);
     }; 
 
+    /*
     // redirect to the ballot
     if (choiceIds.length < 24) {
       alert('You must choose a movie for each category.')
-    } else {
+    } else { */
       document.location.href = '/ballot'
-    }
+    // }
 
 
 
@@ -55,9 +56,6 @@ $(document).ready(function(){
         // add new movie objects to array
         newMovieNames.push({
           name: newMovies[i].value,
-          // GET RID OF THIS
-          // categoryName: newMovies[i].getAttribute('data-category'),
-          image: '',
           voteCount: 1,
           userSubmitted: true
         });
@@ -76,22 +74,12 @@ $(document).ready(function(){
           console.log("error");
         }
       });
-    }
-
-    /*
-    // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
-    for (var i = 0; i < categoryTitles.length; i++) {
-      let categoryOfUserSubmitKey = categoryTitles[i].textContent;
-    // set key to cateogry name in order to know which category user submitted movie is in
-      sessionStorage.setItem(categoryOfUserSubmitKey, newMovies[i].value);
-      console.log(sessionStorage);
-      debugger;
-    }; 
-    */
+    };
   }); 
 
 });
- 
+
+// success function for adding movies to database
 let newMovieIds = [];
 
 function createSuccess (response) {
@@ -103,7 +91,8 @@ function createSuccess (response) {
   // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
   for (var i = 0; i < categoryTitles.length; i++) {
     let categoryOfUserSubmitKey = categoryTitles[i].textContent;
-  // set key to cateogry name in order to know which category user submitted movie is in
+     // set key to cateogry name in order to know which category user submitted movie is in
+    //  set value to _id of new movie
     sessionStorage.setItem(categoryOfUserSubmitKey, newMovieIds[i]);
   };
 };

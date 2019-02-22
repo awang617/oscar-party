@@ -61,23 +61,13 @@ h1, h2, h3, h5 {
 
 div.nominee h5 {
   margin-top: 20px;
-  font-family: 'Laila', serif;
+  font-family: cursive;
   text-align: center;
 }
 
 .chosen img {
   /* background-color: red; */
   border: solid black;
-}
-
-input[type="submit"] {
-  display: block;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
 .userChoice {
@@ -117,5 +107,12 @@ input[type="submit"] {
   padding: 10px 50px;
   text-transform: uppercase;
   font-weight: normal;
-  font-family: 'Laila', serif;
+  font-family: cursive;
+  display: block;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
 }

@@ -45,6 +45,8 @@ Our last priority was styling our pages.
 ## Unsolved Problems
 - Lots of global variables used in order to access in multiple functions
 - Functionality to add another user submitted movie after deleting their first
+- Categories are out of order when deployed on Heroku
+- User submissions are not perfect when deployed on Heroku
 
 
 ---
@@ -55,3 +57,16 @@ Our biggest wins were when we solved our biggest challenges.
 - Utilizing sessionStorage
 - Creating entries in the database of user submitted movies upon submit click/function
 - Increasing vote count
+
+
+---
+## Code Snippet
+We were very proud of utilizing sessionStorage, as it turned out to be integral for our app.
+```js
+// iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
+for (var i = 0; i < categoryTitles.length; i++) {
+  let categoryKey = categoryTitles[i].getAttribute('data-target');
+  // set key to cateogry name in order to store choice movie id with it
+  sessionStorage.setItem(categoryKey, choiceIds[i]);
+};
+```

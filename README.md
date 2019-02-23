@@ -61,6 +61,7 @@ Our biggest wins were when we solved our biggest challenges.
 
 ---
 ## Code Snippet
+We were very proud of utilizing sessionStorage, as it turned out to be integral for our app.
 ```js
 // iterating through category titles again in order to set sessionStorage key to category titles for user submitted movies
 for (var i = 0; i < categoryTitles.length; i++) {

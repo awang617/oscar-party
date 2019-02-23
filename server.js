@@ -59,7 +59,7 @@ app.get('/votes', function votecountPage(req, res) {
      res.json({
          message: 'Welcome to the 2019 Oscar Party! Are you ready to choose your winners for each category?',
          documentationUrl: 'https://github.com/awang617/oscar-party/blob/master/README.md',
-         baseUrl: 'heroku app url goes here', //UPDATE LATER
+         baseUrl: 'https://shielded-springs-98734.herokuapp.com/',
          endpoints: [
              {method: 'GET', path: '/api', description: 'Describes all endpoints'},
              {method: 'GET', path: '/api/category', description: 'See all the categories of the 2019 Oscars'},

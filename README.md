@@ -1,4 +1,4 @@
-# Welcome to the Oscar Party!
+# Oscar Party
 
 ### Overview
 Oscar Party is an interactive Oscar ballot for this year's 91st Academy Awards.  Users can click on the film or individual they think will win or they want to win, and they can also submit their pick for who they wish was nominated.  After selecting a movie for each category, an overall ballot will be populated with their choices as well as their submissions.  On this ballot page, they can edit or delete their submissions.  They can then go to a vote count page that displays the top 10 movies with the most votes as well as every user submitted movie.
